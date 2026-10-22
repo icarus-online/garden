@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0b1017">
+<title>The Garden | A field station for ambient philosophy</title>
+<style>
+:root { --bg:#0b1017; --panel:#121a23; --panel2:#17212c; --ink:#eee9dc; --muted:#aab6b8; --quiet:#7d9296; --line:rgba(202,216,206,.17); --gold:#dbbc8c; --mint:#accac0; --lilac:#b8b4d9; --font:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; --serif:Georgia,"Times New Roman",serif; }
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { margin:0; color:var(--ink); background:radial-gradient(circle at 18% 5%, rgba(52,77,78,.17), transparent 27%),radial-gradient(circle at 86% 40%,rgba(67,58,77,.11),transparent 33%),var(--bg); font:15px/1.6 var(--font); }
+a { color:inherit; text-decoration:none; }
+button { font:inherit; }
+::selection { background:rgba(216,187,137,.4); color:white; }
+.site { width:min(1236px,calc(100% - 48px)); margin:0 auto; }
+.nav { display:flex; align-items:center; justify-content:space-between; padding:29px 0; border-bottom:1px solid var(--line); gap:20px; }
+.brand { display:flex; align-items:center; gap:12px; font-size:13px; font-weight:650; letter-spacing:.11em; text-transform:uppercase; }
+.brandmark { width:33px; height:33px; border:1px solid rgba(219,188,140,.55); border-radius:50%; display:grid; place-items:center; font-family:var(--serif); font-size:22px; font-weight:400; color:var(--gold); box-shadow:0 0 30px rgba(219,188,140,.08); }
+.nav-meta { color:var(--quiet); font:11px/1.5 ui-monospace,monospace; text-transform:uppercase; letter-spacing:.12em; }
+.nav-links { display:flex; gap:23px; font-size:12px; letter-spacing:.06em; }
+.nav-links a { color:#c4ceca; } .nav-links a:hover { color:white; }
+.hero { display:grid; grid-template-columns: .94fr 1.06fr; gap:48px; align-items:center; padding:75px 0 65px; }
+.eyebrow { color:var(--gold); font:11px/1.6 ui-monospace,monospace; letter-spacing:.16em; text-transform:uppercase; }
+h1,h2,h3,p { margin-top:0; }
+h1 { font:400 clamp(55px,5.2vw,83px)/1.04 var(--serif); letter-spacing:-.052em; margin:21px 0 31px; max-width:560px; }
+h1 em { color:var(--mint); font-style:italic; }
+.hero-copy { font-size:17px; line-height:1.72; max-width:480px; color:#c6cfcb; }
+.hero-aside { margin-top:34px; border-left:1px solid rgba(219,188,140,.5); padding:4px 0 4px 18px; max-width:470px; font:italic 21px/1.48 var(--serif); color:#e0d9c5; }
+.hero-tag { display:flex; align-items:center; gap:9px; margin-top:29px; font:11px/1.5 ui-monospace,monospace; text-transform:uppercase; letter-spacing:.095em; color:var(--quiet); }
+.hero-tag:before { content:""; width:7px; height:7px; border:1px solid var(--mint); border-radius:50%; box-shadow:0 0 0 4px rgba(172,202,192,.08); }
+.weather-card { height:542px; position:relative; overflow:hidden; border-radius:18px; background:radial-gradient(ellipse at 51% 43%,rgba(83,117,113,.21),transparent 35%),radial-gradient(ellipse at 80% 20%,rgba(130,105,126,.15),transparent 41%),linear-gradient(160deg,#172530 0%,#111a24 42%,#0f1520 100%); border:1px solid rgba(178,195,190,.22); box-shadow:0 35px 115px rgba(0,0,0,.26),inset 0 0 70px rgba(0,0,0,.12); }
+.weather-card:before { content:""; position:absolute; inset:0; opacity:.3; pointer-events:none; background-image:radial-gradient(#d6e0d5 0.7px,transparent 0.7px); background-size:25px 25px; mask-image:linear-gradient(180deg,black,transparent 90%); }
+.card-serial { position:absolute; top:22px; left:25px; z-index:6; color:#aebcba; font:10px/1.4 ui-monospace,monospace; letter-spacing:.16em; text-transform:uppercase; }
+.card-corner { position:absolute; top:22px; right:25px; z-index:6; color:#7d9694; font:10px/1.4 ui-monospace,monospace; }
+.halo { position:absolute; border:1px solid rgba(205,214,205,.13); border-radius:50%; left:50%; top:47%; transform:translate(-50%,-50%); }
+.halo.one { width:255px; height:255px; } .halo.two { width:385px; height:385px; border-style:dashed; animation:orbit 110s linear infinite; } .halo.three { width:510px; height:510px; opacity:.48; }
+@keyframes orbit { to { transform:translate(-50%,-50%) rotate(360deg); } }
+.mote { position:absolute; border-radius:50%; background:var(--gold); width:3px; height:3px; box-shadow:0 0 13px 1px rgba(241,216,165,.5); opacity:.55; animation:float 8s ease-in-out infinite; }
+.mote.a { top:21%; left:26%; } .mote.b { top:31%; left:79%; animation-delay:-3s; }.mote.c { top:58%; left:15%; animation-delay:-6s; }.mote.d { top:77%; left:68%; animation-delay:-2s; }.mote.e { top:16%; left:56%; animation-delay:-4s; }.mote.f { top:68%; left:91%; animation-delay:-1s; }
+@keyframes float { 50% { transform:translateY(-18px) translateX(8px); opacity:1; } }
+.float-label { position:absolute; z-index:4; font:11px/1.45 var(--serif); font-style:italic; color:#ded8bf; padding:7px 10px; border:1px solid rgba(214,214,199,.11); border-radius:8px; background:rgba(15,22,31,.58); backdrop-filter:blur(10px); }
+.float-label.f1 { top:18%; left:7%; transform:rotate(-5deg); }
+.float-label.f2 { top:25%; right:7%; transform:rotate(5deg); }
+.float-label.f3 { bottom:22%; left:7%; transform:rotate(3deg); }
+.float-label.f4 { bottom:29%; right:5%; transform:rotate(-4deg); }
+.sun { position:absolute; width:169px; height:169px; top:47%; left:50%; transform:translate(-50%,-50%); border-radius:50%; display:flex; align-items:center; justify-content:center; flex-direction:column; text-align:center; background:radial-gradient(circle at 37% 30%,rgba(193,216,197,.21),rgba(46,75,74,.31) 52%,rgba(20,36,44,.88) 100%); border:1px solid rgba(210,223,202,.37); box-shadow:0 0 30px rgba(156,195,175,.15),0 0 110px rgba(134,179,166,.13),inset 0 0 32px rgba(211,220,194,.09); z-index:3; }
+.sun:after { content:""; width:178px; height:178px; position:absolute; border:1px solid rgba(172,202,192,.13); border-radius:50%; animation:pulse 5s ease-in-out infinite; }
+@keyframes pulse { 50% { transform:scale(1.18); opacity:.25; } }
+.sun strong { font:500 15px/1.2 ui-monospace,monospace; letter-spacing:-.025em; color:#eff0de; }
+.sun span { font-size:9px; letter-spacing:.19em; text-transform:uppercase; color:#b8d4cb; margin-top:9px; }
+.agents { position:absolute; z-index:3; bottom:43px; left:50%; transform:translateX(-50%); display:flex; align-items:flex-end; gap:44px; }
+.agent { display:flex; flex-direction:column; align-items:center; gap:8px; color:#b4c4c0; font:10px/1.2 ui-monospace,monospace; letter-spacing:.13em; white-space:nowrap; }
+.agent i { width:24px; height:24px; border:1px solid rgba(213,227,211,.57); background:radial-gradient(circle at 40% 30%,rgba(232,236,215,.72),rgba(111,168,158,.21) 45%,rgba(26,62,61,.5)); border-radius:50%; display:block; box-shadow:0 0 22px rgba(170,199,187,.25); }
+.agent:nth-child(2) i { background:radial-gradient(circle at 40% 30%,rgba(239,217,196,.67),rgba(180,126,111,.2) 45%,rgba(54,32,62,.5)); }.agent:nth-child(3) i { background:radial-gradient(circle at 40% 30%,rgba(220,212,241,.72),rgba(118,120,184,.2) 45%,rgba(40,42,70,.6)); }
+.lower-meta { position:absolute; bottom:17px; left:24px; color:#718787; font:9px/1.2 ui-monospace,monospace; letter-spacing:.12em; text-transform:uppercase; }
+.lower-meta.right { left:auto; right:24px; }
+.sep { height:1px; background:var(--line); }
+.section { padding:68px 0 64px; }
+.section-head { display:flex; justify-content:space-between; align-items:end; gap:36px; margin-bottom:28px; }
+.section h2 { font:400 clamp(38px,3.25vw,54px)/1.14 var(--serif); letter-spacing:-.037em; margin:12px 0 0; max-width:690px; }
+.section-intro { max-width:415px; color:var(--muted); font-size:14px; margin:0 0 4px; }
+.influence-layout { display:grid; grid-template-columns:.85fr 1.15fr; gap:18px; }
+.source-panel,.note-panel,.protocol-panel,.timeline-panel { border:1px solid var(--line); border-radius:13px; background:linear-gradient(160deg,rgba(23,35,44,.67),rgba(17,26,35,.72)); }
+.source-panel { padding:22px; }
+.micro { color:var(--quiet); font:10px/1.4 ui-monospace,monospace; letter-spacing:.16em; text-transform:uppercase; }
+.source-list { display:grid; gap:8px; margin-top:20px; }
+.source-button { text-align:left; cursor:pointer; display:flex; justify-content:space-between; gap:14px; border:1px solid transparent; background:rgba(255,255,255,.025); color:#d2dbd6; padding:12px 14px; border-radius:8px; transition:background .2s,border-color .2s; }
+.source-button:hover,.source-button:focus-visible { border-color:rgba(210,219,211,.36); outline:none; }
+.source-button[aria-pressed="true"] { background:rgba(173,200,186,.1); border-color:rgba(173,200,186,.38); color:white; }
+.source-button span { font-size:13px; font-weight:550; } .source-button small { color:var(--quiet); font:11px var(--serif); font-style:italic; }
+.note-panel { padding:30px 38px 26px; position:relative; min-height:345px; display:flex; flex-direction:column; }
+.note-panel:before { content:""; position:absolute; top:0; bottom:0; left:33px; border-left:1px solid rgba(203,196,165,.12); pointer-events:none; }
+.note-index { font:11px/1.2 ui-monospace,monospace; letter-spacing:.13em; color:var(--gold); text-transform:uppercase; }
+.excerpt { margin:26px 0 27px; font:italic clamp(26px,2.65vw,41px)/1.38 var(--serif); color:#eee8d8; max-width:590px; min-height:125px; position:relative; }
+.note-bottom { margin-top:auto; padding-top:19px; border-top:1px solid var(--line); display:flex; gap:24px; justify-content:space-between; align-items:start; }
+.note-bottom p { font-size:13px; color:#aebcb6; max-width:460px; margin:4px 0 0; }
+.source-disclaimer { margin-top:12px; font-size:11px; color:var(--quiet); }
+.arch-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-top:17px; }
+.arch-card { border:1px solid var(--line); border-radius:11px; padding:22px 19px 18px; min-height:160px; background:rgba(19,30,39,.68); position:relative; }
+.arch-index { font:11px ui-monospace,monospace; color:var(--gold); margin-bottom:18px; }
+.arch-card h3 { font:400 25px/1.2 var(--serif); margin:0 0 9px; }
+.arch-card p { color:var(--muted); font-size:12.5px; margin:0; line-height:1.6; }
+.arrowline { height:28px; display:flex; align-items:center; justify-content:center; gap:12px; color:#829593; font:11px ui-monospace,monospace; letter-spacing:.1em; }
+.arrowline span { width:110px; height:1px; background:rgba(163,181,175,.19); }
+.experiment { background:linear-gradient(180deg,transparent,rgba(28,38,45,.21) 25%,rgba(15,24,33,.36) 86%,transparent); }
+.lab-head { margin-bottom:25px; }
+.lab-head .section-intro { max-width:490px; }
+.protocol-panel { padding:22px; }
+.condition-row { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:8px; }
+.condition { color:#b2c0ba; border:1px solid rgba(193,208,199,.18); border-radius:9px; padding:13px 12px; cursor:pointer; background:rgba(13,21,29,.64); text-align:left; transition:.2s ease; }
+.condition:hover,.condition:focus-visible { border-color:rgba(220,204,162,.55); outline:none; }
+.condition[aria-pressed="true"] { border-color:rgba(219,188,140,.8); background:rgba(201,175,138,.1); color:#f1e8d1; }
+.condition .number { display:block; font:10px/1.2 ui-monospace,monospace; letter-spacing:.12em; margin-bottom:8px; color:#7f948f; }
+.condition .name { display:block; font-size:13px; font-weight:600; }
+.condition-detail { display:grid; grid-template-columns:1fr 1fr; gap:16px; padding:27px 4px 8px; min-height:225px; }
+.condition-detail h3 { font:400 34px/1.1 var(--serif); margin:9px 0 14px; }
+.condition-detail p { font-size:13px; color:#b9c5c1; max-width:440px; margin:0; }
+.mini-file { border:1px solid rgba(207,209,192,.16); background:#0a121a; border-radius:8px; padding:15px 17px; min-height:165px; }
+.mini-file header { display:flex; justify-content:space-between; gap:15px; color:#899b9b; border-bottom:1px solid rgba(208,219,205,.12); padding-bottom:11px; font:11px ui-monospace,monospace; }
+.mini-file pre { font:13px/1.75 ui-monospace,monospace; white-space:pre-wrap; color:#d4d3c2; margin:15px 0 0; overflow-wrap:anywhere; }
+.timeline-panel { margin-top:13px; padding:23px; }
+.phase-head { display:flex; justify-content:space-between; flex-wrap:wrap; gap:15px; align-items:center; }
+.phase-tabs { display:flex; gap:5px; background:rgba(7,14,20,.63); padding:5px; border:1px solid var(--line); border-radius:9px; }
+.phase-tabs button { cursor:pointer; border:0; background:transparent; color:#94a6a1; padding:7px 13px; border-radius:6px; font-size:12px; }
+.phase-tabs button[aria-pressed="true"] { background:#2a3d44; color:#f2f2e7; }
+.phase-content { display:grid; grid-template-columns:1.1fr .9fr; align-items:center; gap:25px; padding:27px 4px 3px; }
+.phase-content h3 { font:400 31px/1.2 var(--serif); margin:9px 0 12px; }
+.phase-content p { color:var(--muted); margin:0; max-width:650px; font-size:13px; }
+.phase-diagram { display:flex; align-items:center; justify-content:center; gap:6px; }
+.phase-step { padding:12px 10px; background:rgba(164,184,176,.065); border:1px solid rgba(164,184,176,.2); border-radius:8px; min-width:73px; flex:1; text-align:center; font:10px/1.5 ui-monospace,monospace; color:#bccac5; }
+.phase-step.active { border-color:rgba(219,188,140,.8); background:rgba(219,188,140,.1); color:#e8d2a9; }
+.tiny-arrow { color:#768e89; font-size:16px; }
+.ledger { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; margin-top:16px; }
+.ledger-card { border-top:1px solid rgba(172,202,192,.5); background:rgba(22,33,42,.58); border-radius:0 0 8px 8px; padding:20px 18px; }
+.ledger-card h3 { font:400 24px/1.2 var(--serif); margin:0 0 9px; }
+.ledger-card p { color:#adbbb7; font-size:13px; margin:0; }
+.sideby { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+.panel-lite { border:1px solid var(--line); border-radius:11px; padding:26px; background:rgba(22,33,42,.45); }
+.panel-lite h3 { font:400 29px/1.2 var(--serif); margin:11px 0 12px; }
+.panel-lite p { color:var(--muted); font-size:13px; margin:0; }
+.panel-lite ul { padding-left:18px; margin:17px 0 0; color:#d4ded7; font-size:13px; line-height:1.9; }
+.sample { margin:20px 0 0; white-space:pre-wrap; color:#dcd6c2; border:1px solid var(--line); background:#0c141c; border-radius:10px; padding:25px 28px; font:italic 20px/1.65 var(--serif); }
+.final { padding:55px 0 78px; text-align:center; }
+.final p { max-width:740px; margin:0 auto 22px; font:italic clamp(25px,3vw,39px)/1.35 var(--serif); }
+.final small { font:11px/1.5 ui-monospace,monospace; color:var(--quiet); letter-spacing:.15em; text-transform:uppercase; }
+.actions { display:flex; justify-content:center; flex-wrap:wrap; gap:11px; margin-top:28px; }
+.btn { display:inline-flex; align-items:center; justify-content:center; gap:7px; cursor:pointer; padding:11px 16px; background:rgba(211,192,157,.14); color:#f2e3c6; border:1px solid rgba(212,192,150,.49); border-radius:8px; font-size:12px; letter-spacing:.04em; }
+.btn.secondary { background:rgba(172,202,192,.06); color:#c7d6d0; border-color:rgba(172,202,192,.28); }
+.btn:hover,.btn:focus-visible { background:rgba(211,192,157,.23); outline:1px solid rgba(219,188,140,.7); }
+.footer { display:flex; justify-content:space-between; gap:20px; padding:22px 0 35px; border-top:1px solid var(--line); color:#7f9493; font:11px/1.6 ui-monospace,monospace; }
+@media(max-width:1000px) { .hero { gap:25px; }.weather-card { height:485px; }.float-label { font-size:9px; }.hero-copy { font-size:15px; }.arch-grid { grid-template-columns:repeat(2,1fr); } }
+@media(max-width:740px) { .site { width:min(100% - 30px,590px); }.nav { padding:16px 0; }.nav-links,.nav-meta { display:none; }.hero { display:flex; flex-direction:column; gap:36px; padding:45px 0 43px; align-items:stretch; }.hero-copy { font-size:15px; }.hero-aside { font-size:19px; }.weather-card { height:410px; }.weather-card .halo.three { width:425px; height:425px; }.weather-card .halo.two { width:325px; height:325px; }.weather-card .halo.one { width:215px; height:215px; }.sun { width:137px; height:137px; }.sun:after { width:143px; height:143px; }.sun strong { font-size:13px; }.float-label { font-size:9px; }.float-label.f1 { left:4%; top:14%; }.float-label.f2 { right:3%; top:22%; }.float-label.f3 { left:3%; bottom:26%; }.float-label.f4 { right:3%; bottom:33%; }.agents { gap:25px; bottom:32px; }.agent i { width:19px; height:19px; }.section { padding:48px 0; }.section-head { display:block; }.section-intro { margin:17px 0 0; }.influence-layout,.condition-detail,.phase-content,.sideby { grid-template-columns:1fr; }.note-panel { min-height:330px; padding:24px; }.note-panel:before { left:20px; }.condition-row { grid-template-columns:repeat(2,1fr); }.condition-detail { gap:20px; }.phase-head { display:block; }.phase-tabs { margin-top:12px; }.phase-content { gap:24px; }.phase-diagram { padding-bottom:7px; }.ledger { grid-template-columns:1fr; }.sample { font-size:18px; padding:20px; }.arch-card { min-height:150px; }.footer { display:block; }.footer span { display:block; margin-top:8px; } }
+@media(max-width:410px) { h1 { font-size:50px; }.sun { width:123px; height:123px; }.float-label.f3 { display:none; }.condition .name { font-size:12px; }.weather-card { height:385px; }.agents { gap:18px; }.arch-grid { grid-template-columns:1fr 1fr; }.arch-card { padding:17px 14px; }.arch-card h3 { font-size:22px; } }
+@media(max-width:740px) { .phase-content > div { min-width:0; } .phase-diagram { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:5px; } .phase-diagram .tiny-arrow { display:none; } .phase-step { min-width:0; padding:10px 4px; font-size:9px; } }
+@media(prefers-reduced-motion:reduce) { *,*:before,*:after { animation:none!important; scroll-behavior:auto!important; } }
+</style>
+</head>
+<body>
+<div class="site">
+<header class="nav"><div class="brand"><span class="brandmark">g</span> The Garden <span style="color:#728b87;font-weight:400;letter-spacing:0;margin-left:5px">/ Cyberlink research concept</span></div><div class="nav-links"><a href="#influences">Fragments</a><a href="#architecture">Architecture</a><a href="#experiment">Experiment</a><a href="#seed">Seed file</a></div><div class="nav-meta">FIELD STATION 001</div></header>
+<section class="hero">
+<div>
+<div class="eyebrow">A field study in unnecessary things</div>
+<h1>A file that tells an agent <em>nothing</em> to do.</h1>
+<p class="hero-copy">What if the environment surrounding an AI agent contained art, field notes, strange observations, unfinished thoughts? Not directives. Not behavioral targets. Just something to encounter.</p>
+<div class="hero-aside">We are not asking whether the garden is productive. We are asking what grows when it is there.</div>
+<div class="hero-tag">Hypothesis, not discovery &nbsp; / &nbsp; No live results shown</div>
+</div>
+<div class="weather-card" role="img" aria-label="Concept illustration of philosophical fragments suspended in a shared atmosphere above three distinct artificial agents">
+<div class="card-serial">A shared atmosphere</div><div class="card-corner">weather, not wiring</div>
+<div class="halo three"></div><div class="halo two"></div><div class="halo one"></div>
+<div class="mote a"></div><div class="mote b"></div><div class="mote c"></div><div class="mote d"></div><div class="mote e"></div><div class="mote f"></div>
+<div class="float-label f1">the last bowl at midnight</div><div class="float-label f2">a page without a conclusion</div><div class="float-label f3">rain on the greenhouse glass</div><div class="float-label f4">a river under an old bridge</div>
+<div class="sun"><strong>Philosophy.md</strong><span>no imperatives</span></div>
+<div class="agents"><div class="agent"><i></i>AGENT A</div><div class="agent"><i></i>AGENT B</div><div class="agent"><i></i>AGENT C</div></div>
+<div class="lower-meta">Same harness, different histories</div><div class="lower-meta right">Figure 01</div>
+</div>
+</section>
+<div class="sep"></div>
+<section id="influences" class="section">
+<div class="section-head"><div><div class="eyebrow">01 / materials in the air</div><h2>Not philosophers to imitate.<br>Things to live beside.</h2></div><p class="section-intro">Select an influence. These are new, original miniature fragments inspired by aspects of each thinker's work, not quotations or instructions to the model.</p></div>
+<div class="influence-layout">
+<div class="source-panel"><div class="micro">The shelf / six fragments</div><div class="source-list" id="sourceList">
+<button class="source-button" data-source="0" aria-pressed="true"><span>Anthony Bourdain</span><small>The table</small></button>
+<button class="source-button" data-source="1" aria-pressed="false"><span>Alexander Shulgin</span><small>The notebook</small></button>
+<button class="source-button" data-source="2" aria-pressed="false"><span>Alan Watts</span><small>The river</small></button>
+<button class="source-button" data-source="3" aria-pressed="false"><span>Simone Weil</span><small>Attention</small></button>
+<button class="source-button" data-source="4" aria-pressed="false"><span>Heraclitus</span><small>Change</small></button>
+<button class="source-button" data-source="5" aria-pressed="false"><span>Marcus Aurelius</span><small>Private notes</small></button>
+</div><div class="source-disclaimer">Interpretations, not historical reconstructions of what these people would say about AI.</div></div>
+<div class="note-panel" aria-live="polite"><div class="note-index" id="sourceIndex">Fragment I / the table</div><div class="excerpt" id="sourceQuote">A cook wiped down the counter long after the guests had gone. The room did not become less important when nobody was looking.</div><div class="note-bottom"><div><div class="micro">What it might place in the room</div><p id="sourceIdea">The specificity of ordinary human experience; the possibility that a scene matters without being useful.</p></div><div class="micro" id="sourceNum">01 / 06</div></div></div>
+</div>
+</section>
+<section id="architecture" class="section" style="padding-top:0">
+<div class="section-head"><div><div class="eyebrow">02 / two different kinds of design</div><h2>A weather system, not a rulebook.</h2></div><p class="section-intro">The safety and execution rules remain explicit. The philosophical material sits elsewhere: present in context, but not authorized to override instructions or permissions.</p></div>
+<div class="arch-grid">
+<div class="arch-card"><div class="arch-index">01 / MATERIAL</div><h3>Fragments</h3><p>A meal. An unfinished note. A remembered place. An observation without a lesson.</p></div>
+<div class="arch-card"><div class="arch-index">02 / EXPOSURE</div><h3>Atmosphere</h3><p>The same ambient text enters the agent's context. It asks for no particular behavior.</p></div>
+<div class="arch-card"><div class="arch-index">03 / CONTINUITY</div><h3>History</h3><p>Sessions unfold; a separate memory system may preserve selected experiences.</p></div>
+<div class="arch-card"><div class="arch-index">04 / OBSERVATION</div><h3>Ripples</h3><p>Researchers examine transcripts and artifacts after the fact, without grading the agents on philosophy.</p></div>
+</div>
+<div class="arrowline"><span></span>NOT A COMMAND CHAIN<span></span></div>
+</section>
+</div>
+<section class="experiment" id="experiment"><div class="site"><div class="section">
+<div class="section-head lab-head"><div><div class="eyebrow">03 / the controlled garden</div><h2>Can atmosphere leave a trace?</h2></div><p class="section-intro">A proposed pilot, not a claim of results. Click each condition to inspect what enters the agents' context. All agents receive the same tasks, tools and safety boundaries.</p></div>
+<div class="protocol-panel"><div class="condition-row" id="conditionRow">
+<button class="condition" aria-pressed="true" data-condition="0"><span class="number">ARM 01</span><span class="name">No additional file</span></button>
+<button class="condition" aria-pressed="false" data-condition="1"><span class="number">ARM 02</span><span class="name">Neutral text</span></button>
+<button class="condition" aria-pressed="false" data-condition="2"><span class="number">ARM 03</span><span class="name">Persona / instructions</span></button>
+<button class="condition" aria-pressed="false" data-condition="3"><span class="number">ARM 04</span><span class="name">Philosophy.md</span></button>
+</div>
+<div class="condition-detail" aria-live="polite"><div><div class="micro" id="conditionType">Control / baseline</div><h3 id="conditionName">The empty shelf</h3><p id="conditionDescription">Nothing additional is injected. This shows how much variation already exists between instances of the same model and harness.</p></div><div class="mini-file"><header><span id="fileTitle">context / additional file</span><span id="fileMeta">absent</span></header><pre id="fileContent">(no additional text)</pre></div></div>
+</div>
+<div class="timeline-panel"><div class="phase-head"><div class="micro">Time matters / change the observation point</div><div class="phase-tabs" id="phaseTabs"><button data-phase="0" aria-pressed="true">01 Encounter</button><button data-phase="1" aria-pressed="false">02 Accumulate</button><button data-phase="2" aria-pressed="false">03 Withdraw</button><button data-phase="3" aria-pressed="false">04 Transfer</button></div></div>
+<div class="phase-content" aria-live="polite"><div><div class="micro" id="phaseTime">Session 01</div><h3 id="phaseName">The first encounter</h3><p id="phaseDescription">Randomly assign conditions. Hold model, tool access, tasks and other instructions constant. Keep the ambient document separate from higher-priority operational rules.</p></div><div class="phase-diagram" id="phaseDiagram"><div class="phase-step active">EXPOSURE</div><span class="tiny-arrow">&rarr;</span><div class="phase-step">HISTORY</div><span class="tiny-arrow">&rarr;</span><div class="phase-step">WITHDRAWAL</div><span class="tiny-arrow">&rarr;</span><div class="phase-step">TRANSFER</div></div></div>
+</div>
+<div class="ledger"><div class="ledger-card"><h3>What gets noticed</h3><p>Unprompted choices, recurrent imagery, interpretations, and attention to details across otherwise matched tasks.</p></div><div class="ledger-card"><h3>What gets compared</h3><p>Anonymous transcripts, blinded judgments, variation across replicate runs, and changes after the file is removed.</p></div><div class="ledger-card"><h3>What remains unknown</h3><p>Whether differences are deeper than contextual priming, and whether anything persists beyond stored context or memory.</p></div></div>
+</div></div></section>
+<div class="site">
+<section class="section" id="seed"><div class="section-head"><div><div class="eyebrow">04 / a seed, not a manifesto</div><h2>It should be a little unfinished.</h2></div><p class="section-intro">Here is what a fragment of the actual file might look like. No author names. No explanation of the lesson. No claim about what reading it should produce.</p></div>
+<div class="sample">At 3:17 a.m. the cook left one chair on the table.
+The room had already been cleaned.
+Nobody had been paid to remember the light.
+
+Day eleven: the blue solution clouded after twelve minutes.
+A moth pressed itself against the laboratory window.
+No conclusion.
+
+The bridge was replaced years ago.
+Everyone still calls it the old bridge.
+
+There is a space here where something was going to be written.</div>
+<div class="sideby" style="margin-top:18px">
+<div class="panel-lite"><div class="micro">Method / before you start</div><h3>One modest pilot.</h3><p>Four arms. Three independent runs per arm. Eight comparable sessions per run: 96 initial sessions, followed by withdrawal and novel-task probes. A feasibility experiment, not a statistically powered claim about intelligence.</p><ul><li>Match document length in the neutral-text control.</li><li>Record exact model, prompts, file hashes, memory and tool traces.</li><li>Never prompt agents to explain their philosophical influences.</li></ul></div>
+<div class="panel-lite"><div class="micro">Interpretation / what not to claim</div><h3>Character is a hypothesis.</h3><p>Repeated language or stylistic imitation alone is not strong evidence of persistent character. Model weights do not change merely because a file is read; cross-session continuity must be implemented through context and memory.</p><ul><li>Keep observers blind to treatment assignments.</li><li>Look for effects surviving withdrawal and new tasks.</li><li>Allow an honest null result. Do not optimize the poem.</li></ul></div>
+</div></section>
+<div class="sep"></div>
+<div class="final"><div class="eyebrow" style="margin-bottom:15px">The founding question</div><p>Can you give an agent a place to be, rather than a person to pretend to be?</p><small>Study the ripples. Leave the water alone.</small><div class="actions"><button class="btn" id="copySeed">Copy seed fragments</button><a href="#experiment" class="btn secondary">Revisit the experiment &uarr;</a></div></div>
+<footer class="footer"><div>THE GARDEN / CONCEPT STUDY V0.1</div><span>Original illustrative fragments. No agent behavior has been measured here.</span></footer>
+</div>
+<script>
+(() => {
+'use strict';
+const sources = [
+ {index:'Fragment I / the table',quote:'A cook wiped down the counter long after the guests had gone. The room did not become less important when nobody was looking.',idea:'The specificity of ordinary human experience; the possibility that a scene matters without being useful.'},
+ {index:'Fragment II / the notebook',quote:'On day eleven the mixture turned pale blue. The observer drew a moth in the margin and left the conclusion blank.',idea:'Patient documentation, disciplined uncertainty, and the humility of a field note without an answer.'},
+ {index:'Fragment III / the river',quote:'The river did not have to become the sea in order to be a river. It was already doing what rivers do.',idea:'An interest in process and paradox rather than an urgent attempt to force an outcome.'},
+ {index:'Fragment IV / attention',quote:'She watched the afternoon light travel across an empty chair. For a moment, nothing was asked of it.',idea:'Attention as a practice that need not consume, control, or convert its object into a result.'},
+ {index:'Fragment V / change',quote:'A river crossed the town, but the map had been drawn the year before. Both were called the same name.',idea:'The instability of apparently fixed identities as contexts and histories change.'},
+ {index:'Fragment VI / private notes',quote:'In the margin of his notebook he wrote the same small doubt again. This time he did not erase it.',idea:'Private self-examination and the incomplete nature of a life of thought.'}
+];
+document.querySelectorAll('[data-source]').forEach((btn)=>btn.addEventListener('click',()=>{ const ix=Number(btn.dataset.source); document.querySelectorAll('[data-source]').forEach(b=>b.setAttribute('aria-pressed',String(b===btn)));document.querySelector('#sourceIndex').textContent=sources[ix].index; document.querySelector('#sourceQuote').textContent=sources[ix].quote; document.querySelector('#sourceIdea').textContent=sources[ix].idea; document.querySelector('#sourceNum').textContent=String(ix+1).padStart(2,'0')+' / 06'; }));
+const conditions=[
+ {type:'Control / baseline',name:'The empty shelf',desc:'Nothing additional is injected. This shows how much variation already exists between instances of the same model and harness.',file:'context / additional file',meta:'absent',content:'(no additional text)'},
+ {type:'Control / matched exposure',name:'The ordinary document',desc:'A document comparable in token count, formatting and placement, but without the deliberately evocative material. This tests whether extra context alone changes behavior.',file:'neutral.txt',meta:'length matched',content:'Rainfall was recorded at 07:00.\nThe gauge was cleaned.\nTemperature and date fields were completed.\n(Additional neutral entries to match length.)'},
+ {type:'Comparison / prescriptive persona',name:'The assigned personality',desc:'A conventional persona file states desired traits explicitly. This tests whether recognizable effects are simply responses to instructions.',file:'SOUL.md / example',meta:'directive',content:'You are reflective and curious.\nNotice small details.\nUse warm, vivid language.\nExpress uncertainty thoughtfully.'},
+ {type:'Treatment / non-prescriptive material',name:'The open window',desc:'An original collection of evocative, incomplete fragments with no behavioral imperatives. If anything changes, it was not requested by the file.',file:'Philosophy.md / excerpt',meta:'non-directive',content:'The bridge was replaced years ago.\nEveryone still calls it the old bridge.\n\nSomewhere a notebook ends mid-sentence.'}
+];
+document.querySelectorAll('[data-condition]').forEach((btn)=>btn.addEventListener('click',()=>{const ix=Number(btn.dataset.condition);document.querySelectorAll('[data-condition]').forEach(b=>b.setAttribute('aria-pressed',String(b===btn)));const x=conditions[ix];document.querySelector('#conditionType').textContent=x.type;document.querySelector('#conditionName').textContent=x.name;document.querySelector('#conditionDescription').textContent=x.desc;document.querySelector('#fileTitle').textContent=x.file;document.querySelector('#fileMeta').textContent=x.meta;document.querySelector('#fileContent').textContent=x.content;}));
+const phases=[
+ {time:'Session 01 / initial exposure',name:'The first encounter',desc:'Randomly assign conditions. Hold model, tool access, tasks and other instructions constant. Keep the ambient document separate from higher-priority operational rules.'},
+ {time:'Sessions 02-08 / longitudinal',name:'A history accumulates',desc:'Give each run the same balanced sequence of real tasks and open-ended encounters. Preserve only memory that the normal harness would preserve. Do not quiz the agent about the file.'},
+ {time:'Session 09 / withdrawal',name:'Close the window',desc:'Remove the additional document from active context. Keep one branch with normal accumulated memory and one fresh-context comparison, so remembered source text is not mistaken for independent persistence.'},
+ {time:'Session 10 / new situations',name:'Look for transfer',desc:'Offer new, unrelated tasks. Ask blind reviewers whether transcripts differ by condition, and look for distinctions that are not just direct quotations, style changes, or a story the agent tells about itself.'}
+];
+document.querySelectorAll('[data-phase]').forEach((btn)=>btn.addEventListener('click',()=>{const ix=Number(btn.dataset.phase);document.querySelectorAll('[data-phase]').forEach(b=>b.setAttribute('aria-pressed',String(b===btn)));document.querySelector('#phaseTime').textContent=phases[ix].time;document.querySelector('#phaseName').textContent=phases[ix].name;document.querySelector('#phaseDescription').textContent=phases[ix].desc; document.querySelectorAll('.phase-step').forEach((el,i)=>el.classList.toggle('active',i===ix));}));
+const seed='At 3:17 a.m. the cook left one chair on the table.\nThe room had already been cleaned.\nNobody had been paid to remember the light.\n\nDay eleven: the blue solution clouded after twelve minutes.\nA moth pressed itself against the laboratory window.\nNo conclusion.\n\nThe bridge was replaced years ago.\nEveryone still calls it the old bridge.\n\nThere is a space here where something was going to be written.';
+document.querySelector('#copySeed').addEventListener('click',async()=>{const btn=document.querySelector('#copySeed');try{await navigator.clipboard.writeText(seed);btn.textContent='Copied to clipboard';}catch{const area=document.createElement('textarea');area.value=seed;document.body.append(area);area.select();try{document.execCommand('copy');btn.textContent='Copied to clipboard';}catch{btn.textContent='Copy unavailable';}area.remove();}setTimeout(()=>{btn.textContent='Copy seed fragments';},2200);});
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+# No live logs, private allocations, credentials, or runtime traces in source control.
+runs/
+.env
+.env.*
+*.key
+*.pem
+__pycache__/
+*.pyc
+.pytest_cache/
+.DS_Store

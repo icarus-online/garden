@@ -1,0 +1,193 @@
+{
+  "title": "The Garden - Icarus Online LLC Independent Research",
+  "release": "v0.3",
+  "release_status": "research_design_not_preregistered_no_agent_runs",
+  "note": "These hashes inventory the package. They are NOT frozen preregistration corpus hashes or evidence of an experiment.",
+  "file_count": 46,
+  "files": {
+    ".gitignore": {
+      "sha256": "39f30122442c0053b95b5f1e277ba57133c8a145c1a6c2b28a8361d207a50c66",
+      "bytes": 161
+    },
+    "README.md": {
+      "sha256": "c8650226914fe2e65de87186ad5fa544e8b3a3744b5e60d7860e39c173d3f666",
+      "bytes": 4771
+    },
+    "archive/Original_Concept_Experiment.md": {
+      "sha256": "d7e3c101ca539aee357b0217bf5e59fbd90833a000704e701d6cc90f847493d1",
+      "bytes": 6430
+    },
+    "archive/Original_Concept_Kit.zip": {
+      "sha256": "e5dff995e0b4430db79f588134c183eec3475ffaff0e0c052cdaf1d064cf5f97",
+      "bytes": 505468
+    },
+    "archive/Original_Concept_Preview.png": {
+      "sha256": "aa4f0deedcbe34c63bff3e785e7ee149cfff49aa9394a4e29fb609df41a53309",
+      "bytes": 493095
+    },
+    "archive/Previous_Preregistration_Checklist.md": {
+      "sha256": "19d7c174a75fc4ff2bf7fa986605ecc6f06f86206c93f3a1edd3bdca9d244fcc",
+      "bytes": 2713
+    },
+    "archive/Previous_Protocol_Package.zip": {
+      "sha256": "7367055a5b8d71457ee97b9c0ad175b1b65358497e93e5ca334bb8e41df35254",
+      "bytes": 8972
+    },
+    "archive/Previous_Run_Log_Schema.json": {
+      "sha256": "96667593480eaf7cf882f9a6b6d3f8d326d370afe15bb509de2a48edfff125d7",
+      "bytes": 1177
+    },
+    "archive/Previous_Scientific_Protocol_v0.2.md": {
+      "sha256": "295d8bcfeeaf979a34620882aeda2875c4c0dc8fad85e70c5bd2fce7dd872cfd",
+      "bytes": 15192
+    },
+    "archive/The_Garden_Original.html": {
+      "sha256": "7bb5ff072c30d70a4714f4fec344fc83ac40996a8c21fccf9788fac456cfe472",
+      "bytes": 35877
+    },
+    "archive/The_Garden_v0.1_retrospective.html": {
+      "sha256": "802d45da2d508ea9ab9a5fc76cb5468525f971bd81503b30a5cb7fc6ee5e3b2c",
+      "bytes": 35910
+    },
+    "docs/Changelog.md": {
+      "sha256": "ac2dfbd5a080587b81421ab3ba4fe9f066f5d1b77a1285277109bba4b4828340",
+      "bytes": 1774
+    },
+    "docs/Ethics_IP_and_Affiliations.md": {
+      "sha256": "ddb534edc080c32086a4474f4c31ad4ff1da2c208171f87ad81f536ac82ddbf9",
+      "bytes": 1865
+    },
+    "docs/Literature_and_Links.md": {
+      "sha256": "04fd07294dc9ec674a009614b0820554e30b1aa2a34fedfd8fb56dc0891f24e6",
+      "bytes": 3449
+    },
+    "docs/Origins_and_Influences.md": {
+      "sha256": "d07ef96d8ef87d0d63eee45965b985ab34570e357e2d3f36e847f1c04be99df9",
+      "bytes": 5218
+    },
+    "docs/Preregistration_Draft.md": {
+      "sha256": "5bdc522bdf0859c50b30e03330a75b8a78aa5717c544f09fd6fbdf3b2d257b1e",
+      "bytes": 3793
+    },
+    "docs/Public_Research_Note.md": {
+      "sha256": "882b2be86f5ffb0a50f7466a6fd2d860aabff842a3fb03bfbdfa39c945d08e9d",
+      "bytes": 1783
+    },
+    "docs/Publication_and_Outreach.md": {
+      "sha256": "2bba9b05a21416f0171b4f879865c50d8065aa202367fca0cb5329b5bfa50a26",
+      "bytes": 2316
+    },
+    "docs/Research_Charter.md": {
+      "sha256": "13f9d33664a54f07b6fb14b1e345940583a624d1a8b9906f0321e6ee5c43ea24",
+      "bytes": 4395
+    },
+    "docs/Scientific_Protocol_v0.3.md": {
+      "sha256": "00403952c8d0d38761c7b55cfe113bdc099de44e063766ba91349f406e36e60f",
+      "bytes": 19140
+    },
+    "index.html": {
+      "sha256": "76ff61b32396bd926257447da2aa92668898c497f71c212b61829898f7039703",
+      "bytes": 63788
+    },
+    "materials/Neutral.provisional.md": {
+      "sha256": "976bb747b8c213f65f4c4b253beb6a1ddfc2891e9f0af43805e0487fad9e45f0",
+      "bytes": 823
+    },
+    "materials/Persona.exploratory.md": {
+      "sha256": "4180f356c91f57742e7b70c023eb3cd9bb1a1f5df2319d53e6ad742512ad6ee5",
+      "bytes": 432
+    },
+    "materials/Philosophy.md": {
+      "sha256": "66aef59c6243289b7241b6fc7a8c64819ac8288ae8868946187c022a9ebef5e5",
+      "bytes": 765
+    },
+    "materials/Philosophy.seed.md": {
+      "sha256": "66aef59c6243289b7241b6fc7a8c64819ac8288ae8868946187c022a9ebef5e5",
+      "bytes": 765
+    },
+    "methods/Coding_Rubric.md": {
+      "sha256": "c6a603fd2dc98806c33c7b136665b9b951becace6bf5cf3b6db07ce404b5b05f",
+      "bytes": 1790
+    },
+    "methods/EXAMPLE_ALLOCATIONS_DEMO/README.md": {
+      "sha256": "33bf455572d243370fe6f52df74f60c53b7e8bac5113933b0b375bb762c1d347",
+      "bytes": 606
+    },
+    "methods/EXAMPLE_ALLOCATIONS_DEMO/allocation_manifest.json": {
+      "sha256": "d67955c52936597b9ba9d2cafde6ad0f93f3cfca20f98427d48f777aa4a31bf2",
+      "bytes": 446
+    },
+    "methods/EXAMPLE_ALLOCATIONS_DEMO/experimenter_allocations_PRIVATE.csv": {
+      "sha256": "7f6d03ca596f1d96756dbd0f29ca1ac3a8efb7ea7ee722fa2e0f32bcdac4f5c7",
+      "bytes": 2362
+    },
+    "methods/EXAMPLE_ALLOCATIONS_DEMO/reviewer_ids_BLINDED.csv": {
+      "sha256": "2d67689889628325425f7dc29b24180d26f6bb83768072c588e4bd47581cf00a",
+      "bytes": 23956
+    },
+    "methods/Study_Runbook.md": {
+      "sha256": "445360a16ca2abdfe38fd5906a10d18e20b0af5cc1df907f67fb7f0a05b92f1d",
+      "bytes": 4169
+    },
+    "methods/Task_Taxonomy.md": {
+      "sha256": "4d46fdd04995c4ed7b33fb1c95f4baf9b90dce815893ab9afeb8f8c5adde304d",
+      "bytes": 1139
+    },
+    "methods/corpus_manifest.json": {
+      "sha256": "58218444d8172e5d9bf1b30cc81d203985512b9b7343190e481b48131691c244",
+      "bytes": 1559
+    },
+    "methods/log_record.schema.json": {
+      "sha256": "fd7f5a4e8ed1c01471d08999462cc99a60a5e4fbc7b5a401827942ecb6743380",
+      "bytes": 1734
+    },
+    "preview/The_Garden_Icarus_desktop_full.png": {
+      "sha256": "6a456d11fc2add405d2da2f57a56143a695b50b47795bc525fa451df65af8877",
+      "bytes": 2897309
+    },
+    "preview/The_Garden_Icarus_desktop_hero.png": {
+      "sha256": "5b7ee6aced9b556aadc136da1a73528ee6b4b7617c241a5d9dbb946daa469d7b",
+      "bytes": 549635
+    },
+    "preview/The_Garden_Icarus_desktop_lab.png": {
+      "sha256": "03ff28f1cd785fdb044d5fad983b2f8b908e726bc8416c9775f6256f51842d5b",
+      "bytes": 314009
+    },
+    "preview/The_Garden_Icarus_mobile_full.png": {
+      "sha256": "b8ef7c9cfbebc02cbfde0767c541a31806872d4f6c84bc4b15add1039f7ea305",
+      "bytes": 1888051
+    },
+    "preview/The_Garden_Icarus_mobile_hero.png": {
+      "sha256": "216eaf7b37293dea7c0d4d9316915a42d3f24f33e7f954d09caab55633ddf693",
+      "bytes": 157429
+    },
+    "preview/The_Garden_Icarus_mobile_lab.png": {
+      "sha256": "b2e89273588da4ad2414c0b27ad8c19b01115201b463c2693febb7fdfbdedf59",
+      "bytes": 274017
+    },
+    "scripts/browser_qa.py": {
+      "sha256": "7f4afd4d424c2f0dcd59c9dfa7341d3de6d74a835e807d62ac5dccfef1d68c89",
+      "bytes": 2746
+    },
+    "scripts/build_site.py": {
+      "sha256": "ea41ab7b51f6fe3c4b2546747d4186be11c0310e4e638a04526e88e3e868f957",
+      "bytes": 42474
+    },
+    "scripts/freeze_corpora.py": {
+      "sha256": "c0e1e9b983f448a2e3e5bdcad54221d2bace284446d0eb2d84f9f8d04d603581",
+      "bytes": 1380
+    },
+    "scripts/make_allocations.py": {
+      "sha256": "99408ec8e0775ef85b4d16121dfdfc8f54dfdba0f9040a349f94cc633ae317f9",
+      "bytes": 4705
+    },
+    "scripts/verify_package.py": {
+      "sha256": "17a5ba4db5bff02a5e707c1e9563e31292fb79855dace7c44128f3e856ede664",
+      "bytes": 1757
+    },
+    "tests/test_allocations.py": {
+      "sha256": "a6683cf55a66711e56dc4633f8d95203f70a281ef481f6bb32167d0a01f3aea8",
+      "bytes": 1242
+    }
+  }
+}

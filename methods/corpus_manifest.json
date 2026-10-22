@@ -1,0 +1,43 @@
+{
+  "schema_version": "0.3",
+  "status": "PRE-PILOT; DO NOT USE AS FINAL TREATMENT FREEZE",
+  "corpora": {
+    "Philosophy.md": {
+      "relative_path": "materials/Philosophy.md",
+      "sha256": "66aef59c6243289b7241b6fc7a8c64819ac8288ae8868946187c022a9ebef5e5",
+      "bytes": 765,
+      "characters": 765,
+      "line_count": 23,
+      "model_token_count": null,
+      "status": "provisional_not_frozen"
+    },
+    "Philosophy.seed.md": {
+      "relative_path": "materials/Philosophy.seed.md",
+      "sha256": "66aef59c6243289b7241b6fc7a8c64819ac8288ae8868946187c022a9ebef5e5",
+      "bytes": 765,
+      "characters": 765,
+      "line_count": 23,
+      "model_token_count": null,
+      "status": "provisional_not_frozen"
+    },
+    "Neutral.provisional.md": {
+      "relative_path": "materials/Neutral.provisional.md",
+      "sha256": "976bb747b8c213f65f4c4b253beb6a1ddfc2891e9f0af43805e0487fad9e45f0",
+      "bytes": 823,
+      "characters": 823,
+      "line_count": 23,
+      "model_token_count": null,
+      "status": "provisional_not_frozen"
+    },
+    "Persona.exploratory.md": {
+      "relative_path": "materials/Persona.exploratory.md",
+      "sha256": "4180f356c91f57742e7b70c023eb3cd9bb1a1f5df2319d53e6ad742512ad6ee5",
+      "bytes": 432,
+      "characters": 432,
+      "line_count": 8,
+      "model_token_count": null,
+      "status": "exploratory_not_primary"
+    }
+  },
+  "warning": "True length matching must be verified with the PINNED MODEL TOKENIZER before running the pilot. Treat sha256 as current byte inventory, not preregistration."
+}

@@ -1,0 +1,12 @@
+{
+  "schema_version": "0.3",
+  "project": "Icarus Online LLC / The Garden",
+  "status": "allocation_plan_only_NOT_experiment",
+  "seed_sha256": "8877ca8b3d774e0f1fa2593ab1613e01630e2d472d3c26a82a1e0501cf193eb9",
+  "seed_is_stored_in_manifest": false,
+  "per_arm": 12,
+  "independent_units": 48,
+  "sessions_per_unit": 13,
+  "planned_minimum_sessions": 624,
+  "algorithm": "FNV1a32(UTF8(seed)) + xorshift32 + within-block Fisher-Yates (4 arms)"
+}
