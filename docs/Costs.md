@@ -8,13 +8,13 @@
 | Caddy / static serving | Existing shared edge and disk | No additional software service or subscription |
 | Route 53 | Existing authoritative hosted zone | No new zone; additional query usage remains subject to the existing account's billing |
 | TLS | Existing Caddy automatic public certificate management | No purchased certificate introduced |
-| GitHub CI / monitoring | Proposed standard hosted Linux workflows | Public-repository standard runner minutes are free under current GitHub policy; artifact/storage usage and private-repository limits must still be checked |
+| GitHub CI / monitoring | Installed standard hosted Linux workflow definitions; run outcomes verified separately | Public-repository standard runner minutes are free under current GitHub policy; artifact/storage usage and private-repository limits must still be checked |
 | Research dry runs | Local Python standard library, 624 mechanical records in a full demonstration | $0 provider-inference spend |
 | Live study | Not configured, authorized as a separate milestone | Not incurred or estimated as an approved commitment |
 
 DigitalOcean's published basic-plan table lists 1 GiB memory, one vCPU, 25 GiB SSD, and 1,000 GiB transfer at $6/month; this matches the audited plan. The full shared host bill is not a Garden-only allocation, and backups, taxes, transfer overages, or unrelated services may appear separately. Reusing existing capacity avoids a new fixed compute charge but does not guarantee zero incremental usage costs. [DigitalOcean Droplet pricing](https://www.digitalocean.com/pricing/droplets).
 
-The CI examples use standard hosted runners, bounded job timeouts, and 14-day release-artifact retention. They do not provision paid larger runners. Public standard-runner minutes are currently free; organization visibility, storage, and billing settings remain authoritative. Neither workflow is active merely because an example file exists. [GitHub Actions billing](https://docs.github.com/en/billing/concepts/product-billing/github-actions).
+The installed `.github/workflows/ci.yml` and `.github/workflows/monitor.yml` use standard hosted Linux runners. CI has a 20-minute job limit and 14-day release-artifact retention; the public health job has a five-minute limit and a configured six-hour schedule. They do not provision paid larger runners, a paid monitoring service, or new production credentials. Public standard-runner minutes are currently free; organization visibility, storage, and billing settings remain authoritative. Installed workflow source does not establish successful execution, delivered alerts, or zero artifact-storage charges. Confirm those facts from actual runs and account usage; the preparation session has not treated a proposed or running job as a completed verification. [GitHub Actions billing](https://docs.github.com/en/billing/concepts/product-billing/github-actions).
 
 ## Future pilot worksheet
 

@@ -1,6 +1,8 @@
 # Garden deployment and operations
 
-**Prepared 22 October 2026.** This document describes the selected release procedure. Its existence is not proof of a live deployment. The execution owner must record the deployed revision and dated DNS/TLS/HTTP checks in the final operations report. Workflow files under `deploy/workflows/` are examples and are inactive until installed in `.github/workflows/` through an authorized repository path.
+**Updated 22 October 2026, before production acceptance.** This document describes the selected release procedure and installed workflow configuration. Its existence is not proof of a live deployment or a successful workflow run. The execution owner must record the deployed revision, artifact digest, dated DNS/TLS/HTTP checks, and actual workflow-run results in the release record. The operative definitions are `.github/workflows/ci.yml` and `.github/workflows/monitor.yml`; files under `deploy/workflows/` remain reference templates.
+
+The parent-site Garden listing was merged in [Icarus Online PR #4](https://github.com/icarus-online/icarus-onl/pull/4) at source revision `3fe72a518371e7e475ea8233f02dd17ff4c8836a`. This establishes the reviewed source integration, not proof that this revision has reached the deployed parent site.
 
 ## Selected host and boundaries
 
@@ -14,7 +16,7 @@ The selected approach avoids another application service and preserves the autho
 
 ## Build and review an immutable artifact
 
-Use Node 22+ (the example workflow selects Node 24), Python 3.10+, and the committed lockfile. From a clean checkout:
+Use Node 22+ (the installed CI workflow selects Node 24), Python 3.10+, and the committed lockfile. From a clean checkout:
 
 ```sh
 npm ci
@@ -28,7 +30,9 @@ sha256sum .release/manifest.json
 
 The build embeds the full Git revision in `health.json` and `artifact-manifest.json`. Packaging refuses an uncommitted checkout or a stale build revision. It produces `.release/garden.tar.gz` and `.release/manifest.json`; the latter records the archive hash, byte length, and source revision. Preserve the reviewed manifest SHA-256 and full revision through an authenticated operator channel. Hashes prove consistency with that trusted record; they do not replace artifact authenticity or code review.
 
-The CI example pins third-party actions to specific commits, checks the application/research/installer/browser suites, and uploads an artifact for non-PR runs. It has only `contents: read`, no production credentials, and no deployment step. Installing workflow examples, requiring their status checks, and confirming a successful GitHub run are separate operational steps; local checks are not evidence that CI is active.
+The installed `Garden CI and release artifact` workflow runs on pull requests, pushes to `main`, and manual dispatch. It pins third-party actions to specific commits, checks the application/research/installer/browser suites, and packages and uploads a release artifact for non-PR runs. It has only `contents: read`, no production credentials, and no deployment step. Source installation, a passing run for the exact revision, and required branch-protection checks are separate facts. Local `npm run check` has passed during preparation; successful remote CI and artifact availability must be confirmed from the actual GitHub run before relying on them.
+
+The browser suite starts and cleans up its own Garden preview by default, so CI does not depend on another repository or a manually started server. Parent-site checks run only when an explicit `PARENT_QA_URL` is supplied. An unconfigured parent suite is recorded as skipped, not passed. See the [browser QA record](Browser_QA.md) for executed local coverage and limits.
 
 ## Promote a release
 
@@ -82,6 +86,8 @@ Retain at least the current and previous known-good releases plus their trusted 
 
 ## Monitoring ownership
 
-`deploy/workflows/monitor.yml.example` runs the public checker every six hours when explicitly installed. It uses no cloud credentials and fails if the certificate has fewer than 14 days remaining. GitHub may delay scheduled workflows; this is not a real-time uptime SLA. An owner must enable/check failed-workflow notifications and periodically verify scheduled runs are actually occurring. No custom email/Slack delivery is configured by this repository.
+The installed `.github/workflows/monitor.yml` defines `Garden public health`: the public checker runs on manual dispatch and is scheduled at minute 17 every six hours (`17 */6 * * *`, UTC). Its job has a five-minute timeout, read-only repository permissions, and no cloud credentials. The checker fails if the certificate has fewer than 14 days remaining. The source schedule is configured; the first successful manual or scheduled run and ongoing execution must still be evidenced separately.
+
+GitHub may delay scheduled workflows; this is not a real-time uptime SLA. An owner must enable/check failed-workflow notifications and periodically verify scheduled runs are actually occurring. No custom email/Slack delivery is configured by this repository, and notification delivery has not been established by the workflow file alone.
 
 Before marking operations complete, record the monitoring owner, activation state, first successful scheduled/manual check, deployed revision, latest DNS/TLS evidence, and rollback target. A passing manual probe does not prove recurring monitoring is active.

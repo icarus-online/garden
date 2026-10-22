@@ -62,6 +62,19 @@ def check_schema(value, spec, path='$'):
     if isinstance(value, str):
         if len(value) < spec.get('minLength', 0) or ('pattern' in spec and not re.search(spec['pattern'], value)):
             raise IntegrityError(f'{path}: invalid text')
+    if spec.get('format') == 'date-time':
+        # Supported RFC 3339 profile: explicit offset, whole seconds, optional
+        # fractional precision. Leap seconds are rejected rather than normalized.
+        timestamp_pattern = (r'[0-9]{4}-[0-9]{2}-[0-9]{2}[Tt](?:[01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]'
+                             r'(?:\.[0-9]+)?(?:[Zz]|[+-](?:[01][0-9]|2[0-3]):[0-5][0-9])')
+        if not isinstance(value, str) or not re.fullmatch(timestamp_pattern, value):
+            raise IntegrityError(f'{path}: invalid timezone-aware date-time')
+        try:
+            parsed = datetime.fromisoformat(value.upper().replace('Z', '+00:00'))
+            if parsed.utcoffset() is None:
+                raise ValueError('Missing timezone')
+        except ValueError as error:
+            raise IntegrityError(f'{path}: invalid timezone-aware date-time') from error
     if type(value) is int and not spec.get('minimum', value) <= value <= spec.get('maximum', value):
         raise IntegrityError(f'{path}: out of range')
 

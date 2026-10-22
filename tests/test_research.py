@@ -9,7 +9,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from research.core import (IntegrityError, Memory, PHASES, blind, canonical, check_lock,
-    load_json, make_lock, run, sha, validate_config, verify, write_json)
+    load_json, make_lock, run, sha, validate_config, verify, write_json, check_schema)
 from scripts.make_allocations import make_allocations
 
 class ResearchTests(unittest.TestCase):
@@ -33,6 +33,34 @@ class ResearchTests(unittest.TestCase):
     def test_shipped_configuration_lock_validates(self):
         config = load_json(ROOT / 'research/configs/dry-run.example.json')
         check_lock(config, load_json(ROOT / 'research/configs/dry-run.example.lock.json'))
+
+    def test_date_time_schema_requires_valid_calendar_and_explicit_timezone(self):
+        spec = {'type':'string','format':'date-time'}
+        for value in ('2026-10-22T23:45:01Z','2024-02-29T12:00:00.123456+05:30',
+                      '2026-10-22t23:45:01z','2026-10-22T23:45:01-07:00'):
+            with self.subTest(valid=value):
+                check_schema(value, spec)
+        for value in ('not a timestamp','2026-10-22','2026-10-22T23:45:01',
+                      '2026-10-22 23:45:01Z','2026-10-22T23:45Z',
+                      '2026-02-29T12:00:00Z','2026-10-22T24:00:00Z',
+                      '2026-10-22T23:45:01+24:00','2026-10-22T23:45:01+00:60',
+                      '2026-10-22T23:45:01+0500','2026-10-22T23:59:60Z'):
+            with self.subTest(invalid=value), self.assertRaises(IntegrityError):
+                check_schema(value, spec)
+
+    def test_rehashed_invalid_trace_timestamp_rejected(self):
+        import shutil
+        path = self.base / 'invalid-timestamp'
+        shutil.copytree(self.first, path)
+        rows = [json.loads(line) for line in (path / 'traces.jsonl').read_text().splitlines()]
+        rows[0]['timestamp_utc'] = 'not a timestamp'
+        (path / 'traces.jsonl').write_bytes(b''.join(canonical(row) for row in rows))
+        manifest = load_json(path / 'manifest.json')
+        manifest['artifacts']['traces.jsonl'] = sha((path / 'traces.jsonl').read_bytes())
+        write_json(path / 'manifest.json', manifest)
+        (path / 'manifest.sha256').write_text(sha((path / 'manifest.json').read_bytes()))
+        with self.assertRaisesRegex(IntegrityError, 'timestamp_utc: invalid timezone-aware date-time'):
+            verify(path)
 
     def test_13_sessions_and_full_traces(self):
         manifest = verify(self.first)

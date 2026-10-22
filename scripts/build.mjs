@@ -18,6 +18,7 @@ for (const dir of ['docs', 'materials', 'methods']) {
 }
 await mkdir(path.join(out, 'research', 'configs'), { recursive: true });
 await cp(path.join(root, 'research', 'configs'), path.join(out, 'research', 'configs'), { recursive: true });
+await cp(path.join(root, 'research', 'README.md'), path.join(out, 'research', 'README.md'));
 await mkdir(path.join(out, 'downloads'), { recursive: true });
 await mkdir(path.join(out, 'archive'), { recursive: true });
 for (const file of ['The_Garden_Original.html', 'The_Garden_v0.1_retrospective.html', 'Original_Concept_Experiment.md']) {

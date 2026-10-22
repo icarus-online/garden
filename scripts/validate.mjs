@@ -50,6 +50,18 @@ async function scan(dir) {
     else if (/\.(html|css|js|md|json|txt|xml|svg)$/.test(entry.name)) {
       const text = await readFile(file, 'utf8');
       assert(!forbidden.some(p => p.test(text)), `Public output sensitive-data pattern: ${path.relative(out, file)}`);
+      if (entry.name.endsWith('.md')) {
+        const prose = text.replace(/```[\s\S]*?```/g, '');
+        for (const match of prose.matchAll(/\[[^\]]*\]\(([^\s)]+)(?:\s+"[^"]*")?\)/g)) {
+          const href = match[1];
+          if (/^(?:[a-z][a-z0-9+.-]*:|#)/i.test(href)) continue;
+          const clean = decodeURIComponent(href.split(/[?#]/)[0]);
+          const target = clean.startsWith('/') ? path.resolve(out, '.' + clean) : path.resolve(path.dirname(file), clean);
+          assert(target.startsWith(out + path.sep), `${path.relative(out, file)}: link escapes public output ${href}`);
+          try { assert((await stat(target)).isFile(), `${path.relative(out, file)}: file link ${href}`); }
+          catch { errors.push(`${path.relative(out, file)}: missing ${href}`); }
+        }
+      }
     }
   }
 }
