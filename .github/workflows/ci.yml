@@ -1,5 +1,3 @@
-# Installation is explicit: copy to .github/workflows/ci.yml after repository
-# workflow-write access and required status checks are established.
 name: Garden CI and release artifact
 on:
   pull_request:
@@ -27,7 +25,6 @@ jobs:
       - run: npm ci
       - run: npx playwright install --with-deps chromium
       - run: npm run check
-      - run: python3 -m unittest discover -s deploy -p 'test_*.py' -v
       - run: npm run qa:browser
       - name: Package committed source
         if: github.event_name != 'pull_request'

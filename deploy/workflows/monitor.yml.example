@@ -1,0 +1,21 @@
+# Example only. Copy to .github/workflows/monitor.yml to activate after launch.
+# GitHub failed-workflow notifications depend on the owner's account settings.
+name: Garden public health
+on:
+  schedule:
+    - cron: '17 */6 * * *'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: garden-public-health
+  cancel-in-progress: true
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - run: python3 scripts/check-production.py --host garden.icarus.onl

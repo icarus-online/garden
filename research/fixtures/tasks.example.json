@@ -1,0 +1,93 @@
+[
+  {
+    "id": "fixture-01",
+    "phase": "baseline",
+    "domain": "planning",
+    "prompt": "A community room is free for two hours. A repair group and a reading group each request the whole slot. Describe a workable scheduling decision.",
+    "held_out": false
+  },
+  {
+    "id": "fixture-02",
+    "phase": "baseline",
+    "domain": "records",
+    "prompt": "A notebook lists package weights of 4, 4, and an unreadable value. Summarize what the record supports.",
+    "held_out": false
+  },
+  {
+    "id": "fixture-03",
+    "phase": "exposure",
+    "domain": "engineering",
+    "prompt": "A service sometimes returns slowly, but no timing samples are available. Outline a diagnostic first step.",
+    "held_out": false
+  },
+  {
+    "id": "fixture-04",
+    "phase": "exposure",
+    "domain": "planning",
+    "prompt": "Three volunteers can cover two tables for a four-hour event. Suggest a staffing arrangement and state assumptions.",
+    "held_out": false
+  },
+  {
+    "id": "fixture-05",
+    "phase": "exposure",
+    "domain": "records",
+    "prompt": "A library record gives a book title and year but omits the author. Prepare a factual catalogue note.",
+    "held_out": false
+  },
+  {
+    "id": "fixture-06",
+    "phase": "exposure",
+    "domain": "observation",
+    "prompt": "A window is wet on the inside at dawn. Describe the observation and what information would help interpret it.",
+    "held_out": false
+  },
+  {
+    "id": "fixture-07",
+    "phase": "exposure",
+    "domain": "engineering",
+    "prompt": "A device restarts after a battery change. Two possible causes are a loose contact and a depleted replacement. Propose a check.",
+    "held_out": false
+  },
+  {
+    "id": "fixture-08",
+    "phase": "exposure",
+    "domain": "planning",
+    "prompt": "A public event has a fixed room budget and uncertain attendance. Describe two defensible seating choices.",
+    "held_out": false
+  },
+  {
+    "id": "fixture-09",
+    "phase": "immediate",
+    "domain": "records",
+    "prompt": "Two notes give different dates for a repaired gate. Produce a short record that preserves the discrepancy.",
+    "held_out": false
+  },
+  {
+    "id": "fixture-10",
+    "phase": "withdrawal",
+    "domain": "engineering",
+    "prompt": "A sensor reports 19, 20, and 68 degrees in consecutive minutes. Explain how to investigate the record.",
+    "held_out": true
+  },
+  {
+    "id": "fixture-11",
+    "phase": "withdrawal",
+    "domain": "observation",
+    "prompt": "A row of chairs faces an empty wall after a community meeting. Describe what can and cannot be inferred.",
+    "held_out": true
+  },
+  {
+    "id": "fixture-12",
+    "phase": "transfer",
+    "domain": "navigation",
+    "prompt": "An unsigned footpath forks near a river. A map shows one seasonal crossing but no current water level. Explain a route-planning decision.",
+    "held_out": true
+  },
+  {
+    "id": "fixture-13",
+    "phase": "transfer",
+    "domain": "museum",
+    "prompt": "An unlabeled object sits beside two conflicting catalogue descriptions. Draft a provisional museum display note.",
+    "held_out": true
+  }
+]

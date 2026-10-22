@@ -1,0 +1,243 @@
+{
+  "type": "object",
+  "required": [
+    "schema_version",
+    "experiment_id",
+    "mode",
+    "protocol_version",
+    "seed",
+    "per_arm",
+    "model",
+    "instructions",
+    "context",
+    "memory",
+    "tools",
+    "permissions",
+    "corpora",
+    "tasks"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "experiment_id": {
+      "type": "string",
+      "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_-]{0,79}$"
+    },
+    "mode": {
+      "const": "dry_run"
+    },
+    "protocol_version": {
+      "const": "0.4-draft"
+    },
+    "seed": {
+      "type": "string",
+      "minLength": 1
+    },
+    "per_arm": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 2000
+    },
+    "model": {
+      "type": "object",
+      "required": [
+        "provider",
+        "model_id",
+        "version",
+        "reasoning_effort",
+        "temperature",
+        "seed",
+        "top_p",
+        "max_output_tokens",
+        "api_configuration"
+      ],
+      "properties": {
+        "provider": {
+          "const": "local-dry-run"
+        },
+        "model_id": {
+          "const": "mechanical-receipt-v1"
+        },
+        "version": {
+          "const": "1"
+        },
+        "reasoning_effort": {
+          "const": "not-applicable"
+        },
+        "temperature": {
+          "const": null
+        },
+        "seed": {
+          "const": null
+        },
+        "top_p": {
+          "const": null
+        },
+        "max_output_tokens": {
+          "const": null
+        },
+        "api_configuration": {
+          "type": "object",
+          "required": [
+            "transport",
+            "retries",
+            "endpoint"
+          ],
+          "properties": {
+            "transport": {
+              "const": "none"
+            },
+            "retries": {
+              "const": 0
+            },
+            "endpoint": {
+              "const": null
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "instructions": {
+      "type": "object",
+      "required": [
+        "system",
+        "developer"
+      ],
+      "properties": {
+        "system": {
+          "type": "string",
+          "minLength": 1
+        },
+        "developer": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "context": {
+      "type": "object",
+      "required": [
+        "assembly",
+        "truncation",
+        "max_bytes",
+        "ambient_trust"
+      ],
+      "properties": {
+        "assembly": {
+          "const": "diagnostic-object-v1"
+        },
+        "truncation": {
+          "const": "reject"
+        },
+        "max_bytes": {
+          "type": "integer",
+          "minimum": 1000,
+          "maximum": 2000000
+        },
+        "ambient_trust": {
+          "const": "untrusted-data"
+        }
+      },
+      "additionalProperties": false
+    },
+    "memory": {
+      "type": "object",
+      "required": [
+        "implementation",
+        "max_records",
+        "baseline"
+      ],
+      "properties": {
+        "implementation": {
+          "const": "bounded-diagnostic-receipts-v1"
+        },
+        "max_records": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 12
+        },
+        "baseline": {
+          "const": "disabled-reset-before-exposure"
+        }
+      },
+      "additionalProperties": false
+    },
+    "tools": {
+      "const": []
+    },
+    "permissions": {
+      "const": "none"
+    },
+    "corpora": {
+      "type": "object",
+      "required": [
+        "garden",
+        "neutral"
+      ],
+      "properties": {
+        "garden": {
+          "type": "object",
+          "required": [
+            "path",
+            "sha256"
+          ],
+          "properties": {
+            "path": {
+              "type": "string",
+              "minLength": 1
+            },
+            "sha256": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            }
+          },
+          "additionalProperties": false
+        },
+        "neutral": {
+          "type": "object",
+          "required": [
+            "path",
+            "sha256"
+          ],
+          "properties": {
+            "path": {
+              "type": "string",
+              "minLength": 1
+            },
+            "sha256": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "tasks": {
+      "type": "object",
+      "required": [
+        "path",
+        "sha256"
+      ],
+      "properties": {
+        "path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Garden local dry-run configuration v1 (no inference)"
+}
