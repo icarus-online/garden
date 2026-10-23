@@ -19,6 +19,12 @@ These are orchestration assignments and the catalog observed in the active sessi
 
 Routine build, lint, type, packaging, browser, and Python tests execute ordinary software commands. They do not introduce a third experimental model or produce participant responses. Development-service usage is distinct from a study's inference budget.
 
+Supplementary public-web QA used the connected Browser Use service with its
+documented default `gpt-5.6-luna`; no model override was requested. The service's
+actual backend/version was not independently attested. That browsing agent is a
+development verification tool, never a Garden participant or a model judge of
+experimental responses.
+
 ## Current executable diagnostic lock
 
 The [example configuration](../research/configs/dry-run.example.json) and its sibling lock identify:
