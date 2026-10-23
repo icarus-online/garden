@@ -98,7 +98,8 @@ Production design reuses the existing Icarus static web host with an isolated
 Garden root and automatic HTTPS. Git owns source, the build manifest owns artifact
 identity, and live acceptance establishes deployed state. See
 [architecture](docs/Architecture.md), [deployment and rollback](docs/Deployment.md),
-[costs](docs/Costs.md), and the release evidence for actual operational status.
+[costs](docs/Costs.md), and [production acceptance](docs/Release_Validation.md)
+for verified operational status and remaining limits.
 
 The project is independent Icarus Online LLC research. Historical employer
 references are provenance, not ownership, sponsorship, endorsement, or permission

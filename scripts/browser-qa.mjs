@@ -41,7 +41,7 @@ if (!gardenUrl) {
 const out = path.resolve('.qa');
 await mkdir(path.join(out, 'garden'), { recursive: true });
 await mkdir(path.join(out, 'parent'), { recursive: true });
-const report = { executed_at: new Date().toISOString(), browser: '', widths: [360,390,768,1024,1440], checks: [], axe: [], screenshots: [], errors: [], third_party_requests: [], parent_suite: {status:parentUrl && process.env.SKIP_PARENT_QA !== '1' ? 'included' : 'skipped', reason:process.env.SKIP_PARENT_QA === '1' ? 'Explicitly disabled by SKIP_PARENT_QA' : parentUrl ? 'Explicit parent preview URL' : 'PARENT_QA_URL was not supplied'} };
+const report = { executed_at: new Date().toISOString(), browser: '', widths: [320,360,390,768,1024,1440], checks: [], axe: [], screenshots: [], errors: [], third_party_requests: [], parent_suite: {status:parentUrl && process.env.SKIP_PARENT_QA !== '1' ? 'included' : 'skipped', reason:process.env.SKIP_PARENT_QA === '1' ? 'Explicitly disabled by SKIP_PARENT_QA' : parentUrl ? 'Explicit parent preview URL' : 'PARENT_QA_URL was not supplied'} };
 const browser = await chromium.launch({ headless: true });
 report.browser = browser.version();
 const context = await browser.newContext({ reducedMotion: 'reduce' });
@@ -87,6 +87,17 @@ for (const width of report.widths) {
       const dimensions = await page.evaluate(() => ({ viewport: innerWidth, document: document.documentElement.scrollWidth, body: document.body.scrollWidth }));
       expect(dimensions.document).toBeLessThanOrEqual(width);
       expect(dimensions.body).toBeLessThanOrEqual(width);
+      const navigation = await page.locator('.masthead nav').evaluate(nav => {
+        const bounds = nav.getBoundingClientRect();
+        return { left: bounds.left, right: bounds.right, links: [...nav.querySelectorAll('a')].map(link => {
+          const rect = link.getBoundingClientRect();
+          return { left: rect.left, right: rect.right };
+        }) };
+      });
+      for (const link of navigation.links) {
+        expect(link.left).toBeGreaterThanOrEqual(navigation.left - 1);
+        expect(link.right).toBeLessThanOrEqual(navigation.right + 1);
+      }
       const results = await new AxeBuilder({ page }).withTags(['wcag2a','wcag2aa','wcag21a','wcag21aa']).analyze();
       report.axe.push({ page: current, violations: results.violations.map(v => ({ id:v.id, impact:v.impact, nodes:v.nodes.map(n => ({ target:n.target, summary:n.failureSummary })) })) });
       const filename = `garden/${route.replace('.html','')}-${width}.png`;

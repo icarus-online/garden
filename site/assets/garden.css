@@ -5,3 +5,13 @@
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}}@media print{.masthead,.footer,.lab-tabs,.skip{display:none}body{--bg:white;--ink:#111;--muted:#333;--accent:#222;--line:#aaa}main{padding:0}a{text-decoration:underline}.lab-pane[hidden]{display:block}.home-hero{min-height:0}.orbital{max-width:400px}.page-heading{padding-top:0}h1{font-size:56px}}
 
 @media(max-width:600px){.masthead nav a{padding:5px 0}.orbit-point{min-height:44px}}
+/* Keep every navigation link visible and release the orbital aspect-ratio
+   minimum on the narrowest supported screens. */
+@media(max-width:350px){
+  .masthead nav{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px 12px;overflow:visible}
+  .masthead nav a{justify-self:start;font-size:11px;padding:7px 0}
+  .home-hero{grid-template-columns:minmax(0,1fr)}
+  .home-hero>*{min-width:0}
+  .hero-words h1{font-size:clamp(62px,20vw,70px)}
+  .orbital{min-height:0}
+}

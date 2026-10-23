@@ -1,8 +1,8 @@
 # Garden deployment and operations
 
-**Updated 22 October 2026, before production acceptance.** This document describes the selected release procedure and installed workflow configuration. Its existence is not proof of a live deployment or a successful workflow run. The execution owner must record the deployed revision, artifact digest, dated DNS/TLS/HTTP checks, and actual workflow-run results in the release record. The operative definitions are `.github/workflows/ci.yml` and `.github/workflows/monitor.yml`; files under `deploy/workflows/` remain reference templates.
+**Updated 23 October 2026.** The initial production release is accepted; see [the dated release record](Release_Validation.md) for source revisions, artifact hashes, public checks, CI runs, and remaining monitoring limits. This document describes the maintained release procedure. The operative definitions are `.github/workflows/ci.yml` and `.github/workflows/monitor.yml`; files under `deploy/workflows/` remain reference templates.
 
-The parent-site Garden listing was merged in [Icarus Online PR #4](https://github.com/icarus-online/icarus-onl/pull/4) at source revision `3fe72a518371e7e475ea8233f02dd17ff4c8836a`. This establishes the reviewed source integration, not proof that this revision has reached the deployed parent site.
+The parent-site Garden listing was merged in [Icarus Online PR #4](https://github.com/icarus-online/icarus-onl/pull/4) at source revision `3fe72a518371e7e475ea8233f02dd17ff4c8836a`. Production acceptance compared the served homepage byte-for-byte with that reviewed build.
 
 ## Selected host and boundaries
 
