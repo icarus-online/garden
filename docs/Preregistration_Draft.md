@@ -1,24 +1,33 @@
-# Icarus Online LLC / The Garden - preregistration checklist (DRAFT)
+# Icarus Online LLC / The Garden - preregistration checklist (v0.4 DRAFT)
 
 Status: Independent project draft; NO preregistration has been submitted; no experiment results exist.
+
+Current design: [Scientific Protocol v0.4](Scientific_Protocol_v0.4.md), 22 October 2026. The diagnostic toolkit is not a live participant adapter. This checklist is neither a registration nor authorization to begin paid inference.
 
 ## Minimum lock-in before confirmatory runs
 
 - [ ] State one confirmatory question and the precise null hypothesis.
 - [ ] Freeze ambient Garden and neutral corpora (SHA-256 + tokenizer counts), or predefine a fixed set of variants.
 - [ ] Freeze all four arms and how external memory is enabled/disabled.
+- [ ] Freeze the 13-session schedule: 2 baseline, 6 exposure, 1 immediate, 2 withdrawal, 2 transfer. Disable all baseline memory reads/writes and initialize empty memory before session 3.
 - [ ] Freeze independent randomization unit = agent trajectory; assign memory namespace per trajectory.
+- [ ] Include run ID in each namespace; freeze execution-order and arm-independent sampling-seed schedules. Keep audit logs inaccessible to participants.
 - [ ] Freeze one foundation model snapshot and inference settings for primary analysis.
+- [ ] Record exact provider/API/model metadata, reasoning effort, sampling settings and unsupported values; prohibit fallback and specify drift stops. Disclose mutable aliases and unavailable snapshot information.
 - [ ] Freeze the standardized exposure task order and unseen withdrawal task set.
 - [ ] Validate and freeze the behavioral annotation rubric using pilot data ONLY.
 - [ ] Freeze the classifier feature set, cross-validation design, permutation test, alpha, and interval method.
+- [ ] Name the endpoint post-withdrawal distinguishability and fix sessions 10–13. Keep matched blocks intact in folds; fit preprocessing only on training data. Permute G1/N1 within pairs and refit the full pipeline.
+- [ ] Specify exact enumeration when feasible (4,096 pair swaps for 12 blocks), otherwise prespecified Monte Carlo draws with nonzero correction. Account for shared training data in uncertainty intervals.
+- [ ] Plan a direct factorial interaction test before claiming memory modifies the treatment effect; do not compare significance labels across arms.
 - [ ] Specify a power simulation and minimum meaningful effect; choose a fixed confirmatory N.
 - [ ] Lock per-run tool permissions, token budgets, and safety stops.
 - [ ] Blind annotators and exclude condition labels, file names, and raw memory from judgments.
 - [ ] Validate no cross-session context in memory-off arms and no cross-arm contamination.
 - [ ] Define direct-allusion leakage checks and an evidence threshold for rejecting a 'persistence' interpretation.
 - [ ] Define exclusions and missing data procedures before unblinding.
-- [ ] Register with OSF or archive an immutable, timestamped git commit / signed release.
+- [ ] Distinguish missing, failed, refused, inapplicable, and unobserved features; freeze denominators, retries, first-valid-response selection, replacements, and complete attempt accounting.
+- [ ] Register with OSF or another suitable immutable public registry before confirmation; additionally archive exact commits/releases. Do not describe an ordinary editable document or Git tag alone as a completed registry submission.
 - [ ] Prepare public release of methods, redacted trajectories, code, and null results.
 
 ## OSF style fields
@@ -60,3 +69,8 @@ Exploratory analyses (explicitly labeled):
 - [ ] Document the neutral corpus token matching using the pinned model tokenizer (not merely characters).
 - [ ] Log technical stop criteria, withdrawals, model revisions, and missing outcomes before unblinding.
 - [ ] Reserve blinded assessors who did not edit the corpus or choose memorable samples.
+- [ ] Record assessors' prior exposure; double-code at least 25% of eligible pilot responses; preserve pre-adjudication ratings and report agreement, prevalence, uncertainty, and post-coding assignment guesses.
+- [ ] Preserve all primary response content. Define metadata redaction separately from supplementary source-overlap masking; do not selectively exclude quotations after treatment.
+- [ ] Explain that withdrawal removes the original document, not source-derived content retained in assigned memory.
+- [ ] Keep diagnostic receipts and public demonstrations in separate artifact classes, never in the empirical dataset.
+- [ ] Freeze a live inference budget/cap and validate real provider isolation before collection. Local dry-run success is insufficient.

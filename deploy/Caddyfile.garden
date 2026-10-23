@@ -1,0 +1,55 @@
+# Append to the existing Caddyfile; preserve its global options and parent sites.
+# Mount the complete host /opt/garden at /srv/garden:ro, not just current/.
+(garden_security) {
+	header {
+		Content-Security-Policy "default-src 'none'; base-uri 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-ancestors 'none'; form-action 'none'; object-src 'none'; upgrade-insecure-requests"
+		Strict-Transport-Security "max-age=31536000"
+		X-Content-Type-Options "nosniff"
+		X-Frame-Options "DENY"
+		Referrer-Policy "strict-origin-when-cross-origin"
+		Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=()"
+		-Server
+		-Set-Cookie
+		defer
+	}
+}
+
+http://garden.icarus.onl {
+	import garden_security
+	redir https://garden.icarus.onl{uri} 308
+}
+
+garden.icarus.onl {
+	import garden_security
+	root * /srv/garden/current
+	encode zstd gzip
+
+	@private path /.git* /.env* /runs/* /deploy/* /scripts/* /tests/* /node_modules/* /research/core.py /research/__main__.py /package.json /package-lock.json
+	error @private 404
+
+	@index_query expression `{http.request.uri.path} == '/index.html' && {http.request.uri.query} != ''`
+	redir @index_query /?{http.request.uri.query} 308
+	@index path /index.html
+	redir @index / 308
+
+	@assets path /assets/*
+	@downloads path /downloads/*
+	@dynamic path /health.json /artifact-manifest.json
+	@historical path /archive/The_Garden_Original.html /archive/The_Garden_v0.1_retrospective.html
+	header @historical Content-Disposition "attachment"
+	header @assets Cache-Control "public, max-age=0, must-revalidate"
+	header @downloads Cache-Control "public, max-age=0, must-revalidate"
+	header @dynamic Cache-Control "no-store"
+	# Revalidate other documents; asset names are not content-addressed.
+	header ?Cache-Control "no-cache"
+
+	file_server
+	handle_errors {
+		import garden_security
+		header Cache-Control "no-store"
+		rewrite * /404.html
+		file_server {
+			status {err.status_code}
+		}
+	}
+}

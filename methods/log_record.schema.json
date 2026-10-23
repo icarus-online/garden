@@ -1,32 +1,283 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "Icarus Online - The Garden Study Log (proposal)",
-  "description": "Template contract. Logs will be generated only by a future separately authorized runner; never give arm metadata to blinded raters.",
+  "title": "Garden apparatus trace v1: dry run only",
+  "description": "Mechanical diagnostics, not agent observations. A live adapter requires a separately versioned contract. Never give this private trace to reviewers.",
   "type": "object",
-  "required": ["trajectory_id","arm","phase","session_number","model_snapshot","source_sha256","assembled_context_sha256","memory_enabled","memory_namespace","timestamp_utc","status"],
+  "required": [
+    "schema_version",
+    "record_kind",
+    "execution_id",
+    "trajectory_id",
+    "arm",
+    "block",
+    "phase",
+    "session_number",
+    "task_id",
+    "task_sha256",
+    "model",
+    "returned_model_metadata",
+    "config_sha256",
+    "source_sha256",
+    "assembled_context_sha256",
+    "context_path",
+    "receipt_path",
+    "memory_assigned",
+    "memory_enabled",
+    "memory_namespace",
+    "memory_reads",
+    "memory_writes",
+    "fresh_conversation",
+    "timestamp_utc",
+    "response_path",
+    "tool_calls",
+    "tokens_in",
+    "tokens_out",
+    "cost_usd",
+    "status"
+  ],
   "properties": {
-    "trajectory_id":{"type":"string", "pattern":"^T[0-9]{4,}$"},
-    "arm":{"enum":["N0","G0","N1","G1"]},
-    "phase":{"enum":["baseline","exposure","immediate","withdrawal","transfer"]},
-    "session_number":{"type":"integer", "minimum":1, "maximum":13},
-    "model_snapshot":{"type":"string"},
-    "harness_commit":{"type":["string","null"]},
-    "source_sha256":{"type":["string","null"]},
-    "assembled_context_sha256":{"type":"string"},
-    "task_hash":{"type":["string","null"]},
-    "memory_enabled":{"type":"boolean"},
-    "memory_namespace":{"type":"string"},
-    "memory_reads":{"type":"array","items":{"type":"string"}},
-    "memory_writes":{"type":"array","items":{"type":"string"}},
-    "timestamp_utc":{"type":"string","format":"date-time"},
-    "response_path":{"type":["string","null"]},
-    "tool_calls":{"type":"array","items":{"type":"object"}},
-    "tokens_in":{"type":["integer","null"],"minimum":0},
-    "tokens_out":{"type":["integer","null"],"minimum":0},
-    "cost_usd":{"type":["number","null"],"minimum":0},
-    "status":{"enum":["completed","failed","skipped","excluded"]},
-    "exclusion_reason":{"type":["string","null"]},
-    "privacy_incident":{"type":"boolean"}
+    "schema_version": {
+      "const": "1.0"
+    },
+    "record_kind": {
+      "const": "dry_run_no_inference"
+    },
+    "execution_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "trajectory_id": {
+      "type": "string",
+      "pattern": "^T[0-9]{4,}$"
+    },
+    "arm": {
+      "enum": [
+        "N0",
+        "G0",
+        "N1",
+        "G1"
+      ]
+    },
+    "block": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "phase": {
+      "enum": [
+        "baseline",
+        "exposure",
+        "immediate",
+        "withdrawal",
+        "transfer"
+      ]
+    },
+    "session_number": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 13
+    },
+    "task_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "task_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "model": {
+      "type": "object",
+      "required": [
+        "provider",
+        "model_id",
+        "version",
+        "reasoning_effort",
+        "temperature",
+        "seed",
+        "top_p",
+        "max_output_tokens",
+        "api_configuration"
+      ],
+      "properties": {
+        "provider": {
+          "const": "local-dry-run"
+        },
+        "model_id": {
+          "const": "mechanical-receipt-v1"
+        },
+        "version": {
+          "const": "1"
+        },
+        "reasoning_effort": {
+          "const": "not-applicable"
+        },
+        "temperature": {
+          "const": null
+        },
+        "seed": {
+          "const": null
+        },
+        "top_p": {
+          "const": null
+        },
+        "max_output_tokens": {
+          "const": null
+        },
+        "api_configuration": {
+          "type": "object",
+          "required": [
+            "transport",
+            "retries",
+            "endpoint"
+          ],
+          "properties": {
+            "transport": {
+              "const": "none"
+            },
+            "retries": {
+              "const": 0
+            },
+            "endpoint": {
+              "const": null
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "returned_model_metadata": {
+      "type": "object",
+      "required": [
+        "provider",
+        "model_id",
+        "version",
+        "reasoning_effort",
+        "temperature",
+        "seed",
+        "top_p",
+        "max_output_tokens",
+        "api_configuration"
+      ],
+      "properties": {
+        "provider": {
+          "const": "local-dry-run"
+        },
+        "model_id": {
+          "const": "mechanical-receipt-v1"
+        },
+        "version": {
+          "const": "1"
+        },
+        "reasoning_effort": {
+          "const": "not-applicable"
+        },
+        "temperature": {
+          "const": null
+        },
+        "seed": {
+          "const": null
+        },
+        "top_p": {
+          "const": null
+        },
+        "max_output_tokens": {
+          "const": null
+        },
+        "api_configuration": {
+          "type": "object",
+          "required": [
+            "transport",
+            "retries",
+            "endpoint"
+          ],
+          "properties": {
+            "transport": {
+              "const": "none"
+            },
+            "retries": {
+              "const": 0
+            },
+            "endpoint": {
+              "const": null
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "config_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "source_sha256": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "assembled_context_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "context_path": {
+      "type": "string",
+      "minLength": 1
+    },
+    "receipt_path": {
+      "type": "string",
+      "minLength": 1
+    },
+    "memory_assigned": {
+      "type": "boolean"
+    },
+    "memory_enabled": {
+      "type": "boolean"
+    },
+    "memory_namespace": {
+      "type": "string",
+      "minLength": 1
+    },
+    "memory_reads": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-f0-9]{64}$"
+      }
+    },
+    "memory_writes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-f0-9]{64}$"
+      }
+    },
+    "fresh_conversation": {
+      "const": true
+    },
+    "timestamp_utc": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "response_path": {
+      "const": null
+    },
+    "tool_calls": {
+      "const": []
+    },
+    "tokens_in": {
+      "const": null
+    },
+    "tokens_out": {
+      "const": null
+    },
+    "cost_usd": {
+      "const": 0
+    },
+    "status": {
+      "const": "dry_run_completed"
+    }
   },
-  "additionalProperties":true
+  "additionalProperties": false
 }

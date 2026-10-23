@@ -1,56 +1,109 @@
 # The Garden
-## Icarus Online LLC | Independent Research | Field Station 001
 
-**Project status:** Research design and interactive concept, v0.3, 19 October 2026. NOT preregistered. NO agent experiments have been run and no research findings are claimed.
+**Icarus Online LLC · independent research · v0.4 · pre-pilot**
 
-> Can you give an agent a place to be, rather than a person to pretend to be?
+Can exposure to art, philosophy, and cultural context produce observable,
+persistent differences in AI-agent behavior without prescribing a persona?
 
-The Garden studies ambient cultural influence in stateful AI-agent systems. It begins with a deliberately non-prescriptive text file, `Philosophy.md`: original fragments of kitchens, laboratories, weather, attention, rivers, and incomplete observations. It asks no agent to be philosophical and does not change permission or safety rules.
+[Enter the Garden](https://garden.icarus.onl/) ·
+[Explore the Laboratory](https://garden.icarus.onl/laboratory.html) ·
+[Read protocol v0.4](docs/Scientific_Protocol_v0.4.md)
 
-The question is empirical: can repeated exposure to this material change **observable behavior on new tasks after the source material is removed**? If a difference persists, can it be explained by a controlled, auditable memory mechanism, and is it distinguishable from quotation, style imitation, or ordinary prompt priming?
+The Garden is both an artistic environment and an experimental apparatus. The
+artwork has no obligation to produce a significant result. The research must be
+able to distinguish evidence from a compelling story.
 
-The artwork has no obligation to produce a significant result. The research has an obligation to distinguish evidence from a compelling story.
+**No agent study has been run. No empirical findings are claimed. This project
+is not preregistered.** The public laboratory demonstrates experimental structure
+and exports educational plans. The local harness produces explicitly labeled
+mechanical diagnostics with **zero model calls**. It cannot run live inference.
 
-### Ownership and independence
+## Explore and reproduce
 
-This project is organized under **Icarus Online LLC**, not Cyberlink or Soberlink. Soberlink was mentioned in the originating conversation as a possible engineering context, **not** as a sponsor, repository owner, data source, or confirmed testbed. Do not import employer code, agents, prompts, infrastructure, customer information, or confidential materials without written authorization and a clear rights review. All included content is independently drafted for this concept except clearly attributed public literature.
+Requires Node.js 22 or newer and Python 3.10 or newer. Clone with history: the
+build includes the original source snapshot from its preserved Git commit.
 
-### Explore
+```sh
+git clone https://github.com/icarus-online/garden.git
+cd garden
+npm ci
+npm run check
+npm run serve
+```
 
-- Open `index.html` locally for the self-contained visual field station. It works without internet for the core interactions.
-- Read `materials/Philosophy.seed.md` as art, without an attached instructional preamble.
-- Read `docs/Research_Charter.md` for the purpose and boundaries.
-- Read `docs/Scientific_Protocol_v0.3.md` for the scientific experiment.
-- Read `docs/Origins_and_Influences.md` for the genealogy of the idea.
-- Read `docs/Literature_and_Links.md` for verified research sources.
-- Read `docs/Preregistration_Draft.md` and `methods/Study_Runbook.md` before using the study design.
-- Run `python3 scripts/make_allocations.py --seed garden-pilot-v0.3` to **generate an allocation plan only**. This does NOT execute AI agents.
-- Run `python3 -m unittest discover -s tests -v` to verify reproducible allocation and invariants.
+The preview runs at `http://127.0.0.1:4178`. No account, runtime secret, database,
+inference provider, remote font, analytics, or cookie is required.
 
-### Research structure
+```sh
+npx playwright install --with-deps chromium
+npm run qa:browser
+```
 
-| Layer | Contents | Purpose |
+Browser QA covers responsive layouts, accessibility, keyboard operation, motion
+preferences, navigation, and functional laboratory controls. See the dated
+[browser report](docs/Browser_QA.md) for executed evidence and limitations.
+
+The research toolkit uses the Python standard library:
+
+```sh
+python3 -m research validate research/configs/dry-run.example.json
+python3 -m research run research/configs/dry-run.example.json --out runs/example
+python3 -m research verify runs/example
+```
+
+See [the complete toolkit guide](research/README.md) for locking a changed
+configuration, private allocations, blind exports, and integrity checks. A lock
+records the exact implementation as well as configuration and source hashes.
+Changing the implementation invalidates old locks deliberately.
+
+## What lives here
+
+| Surface | Source | Purpose |
 |---|---|---|
-| Garden / art | `materials/Philosophy.seed.md` | An artistic treatment that makes no behavioral demands. |
-| Laboratory / methods | `docs/Scientific_Protocol_v0.3.md` and `methods/` | Predeclared design, blinding, validity checks, analysis. |
-| Field station / website | `index.html` | Exploration, visual research explanation, interactive arm comparisons, outcome interpreter, allocation tool. |
-| Reproducibility | `scripts/`, `tests/`, `methods/` | Seeded random assignment, schemas, initial task taxonomy, freeze checklist. |
-| Provenance | `archive/` | Original concept page and previous protocol retained, not overwritten. |
+| Public experience | `site/` | Eight static pages, local artwork, interactive Garden and Laboratory |
+| Artistic corpus | `materials/` | Original fragments, preserved byte-for-byte |
+| Scientific protocol | `docs/Scientific_Protocol_v0.4.md`, `methods/` | Pilot design, coding, preregistration preparation, limitations |
+| Local apparatus | `research/`, `scripts/`, `tests/` | Locked configuration, seeded allocation, isolation, trace validation |
+| Operations | `deploy/`, `docs/Deployment.md` | Serving, immutable artifacts, atomic promotion, rollback and monitoring |
+| Provenance | `archive/`, `v2/`, root `index.html`, `preview/` | Preserved earlier designs and dated QA artifacts |
+| Generated output | `dist/`, `.release/`, `runs/`, `.qa/` | Ignored build, release, private diagnostics and test artifacts |
 
-### First study: 2x2 causal experiment
+The root `index.html` and original Python site builder are historical v0.3
+artifacts; current website source is `site/`. The original `RELEASE_MANIFEST.json`
+describes that source package. Current builds generate their own hashed manifest.
 
-Randomize **independent agent trajectories**, not individual responses, to Garden or neutral text and memory enabled or disabled (N0, G0, N1, G1). Use identical model snapshot, tasks, inference settings, and governance. Exposure, file withdrawal, and transfer phases are separated by fresh conversations. A small 48-trajectory pilot tests feasibility; a new, preregistered confirmatory sample must be powered after the pilot. Baseline and explicit persona comparisons are conceptually useful but are NOT part of the primary 2x2 analysis.
+## Scientific boundary
 
-The primary contrast is **G1 versus N1 during withdrawal/transfer**. G0 versus N0 after withdrawal is a negative-control leakage check. A statistically detectable difference does not imply consciousness, inner experience, or learned model weights.
+The primary feasibility pilot plans 48 independent trajectories, balanced across
+Garden/neutral exposure × memory enabled/disabled. Thirteen sessions per
+trajectory produce **624 scheduled session-level calls**, before any retries or
+additional inference. Repeated responses are not independent experimental units.
 
-### Status and next gate
+Baseline memory is disabled in all arms and reset before exposure. Withdrawal
+removes the original document; memory may still retain its influence or wording.
+The original no-document/neutral/persona/philosophy comparison is a separate
+educational demonstration. Neither demonstration is empirical evidence.
 
-1. Completed: archived original concept, upgraded field station, drafted independent Icarus ownership charter, documented scientific design, created deterministic allocations and validation tests.
-2. Pending: choose an authorized model/harness, freeze actual study materials and task bank, implement audited memory isolation, validate blind coding, run ONLY a feasibility pilot.
-3. Pending: power simulation, protocol revision, independent preregistration, confirmatory experiment and publication (including null findings).
+The shipped control is provisional, example tasks are public, and diagnostic
+memory is not an inference-memory implementation. An actual pilot requires a
+validated provider adapter, exact model lock, token matching, audited isolation,
+sealed held-out tasks, corpus reuse terms, independent reviewers, and an explicit
+budget. Confirmation additionally requires a powered sample and frozen public
+preregistration. See [the research roadmap](docs/Research_Roadmap.md) and
+[scientific review](docs/Scientific_Review.md).
 
-### Core premise
+## Deployment and custody
+
+Production design reuses the existing Icarus static web host with an isolated
+Garden root and automatic HTTPS. Git owns source, the build manifest owns artifact
+identity, and live acceptance establishes deployed state. See
+[architecture](docs/Architecture.md), [deployment and rollback](docs/Deployment.md),
+[costs](docs/Costs.md), and the release evidence for actual operational status.
+
+The project is independent Icarus Online LLC research. Historical employer
+references are provenance, not ownership, sponsorship, endorsement, or permission
+to use proprietary materials. No employer code or data is included. The supplied
+artwork is preserved; no blanket third-party license is inferred. See
+[provenance and reuse](docs/Provenance.md).
 
 **Count the ripples. Leave the garden alone.**
-
-The fragments remain art even if every statistical test returns null.
