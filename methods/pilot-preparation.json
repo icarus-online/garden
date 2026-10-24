@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "artifact_class": "non_executable_preparation_worksheet",
+  "protocol": "0.4",
+  "status": "blocked_before_collection",
+  "inference_enabled": false,
+  "collection_approval": null,
+  "design": {
+    "matched_blocks": 12,
+    "arms": ["N0", "G0", "N1", "G1"],
+    "trajectories": 48,
+    "sessions_per_trajectory": 13,
+    "base_session_calls": 624
+  },
+  "participant": {
+    "provider": null,
+    "api_version": null,
+    "model": null,
+    "immutable_version_or_alias_disclosure": null,
+    "returned_metadata_evidence": null,
+    "tokenizer_version": null,
+    "settings_and_unsupported_parameters": null,
+    "fallback_allowed": false
+  },
+  "evidence": {
+    "corpus_rights_and_reuse": null,
+    "token_matching_and_prompt_audit": null,
+    "private_task_bank_custody": null,
+    "adapter_and_memory_isolation": null,
+    "independent_coders_and_blinding": null,
+    "pilot_endpoints_and_progression_thresholds": null,
+    "canary_approval_and_review": null
+  },
+  "budget": {
+    "currency": null,
+    "verified_rates_and_date": null,
+    "measured_tokens_by_phase": null,
+    "canary_calls": null,
+    "retry_calls": null,
+    "other_model_calls": null,
+    "maximum_total_calls": null,
+    "per_request_token_limits": null,
+    "estimated_cost_and_reserve": null,
+    "hard_monetary_cap": null,
+    "funding_owner": null,
+    "stop_and_alert_destination": null
+  },
+  "note": "Never store credentials, private seeds, held-out task content or raw traces here. Null means unresolved, never zero. This worksheet cannot authorize or execute inference."
+}
