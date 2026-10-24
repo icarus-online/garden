@@ -92,6 +92,10 @@ budget. Confirmation additionally requires a powered sample and frozen public
 preregistration. See [the research roadmap](docs/Research_Roadmap.md) and
 [scientific review](docs/Scientific_Review.md).
 
+The [pilot decision packet](docs/Pilot_Readiness_Packet.md) turns those gates into
+assigned deliverables, an adapter-validation matrix and an unfilled cost worksheet.
+It is preparation only and does not authorize or enable participant inference.
+
 ## Deployment and custody
 
 Production design reuses the existing Icarus static web host with an isolated
