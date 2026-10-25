@@ -34,6 +34,25 @@ The installed `Garden CI and release artifact` workflow runs on pull requests, p
 
 The browser suite starts and cleans up its own Garden preview by default, so CI does not depend on another repository or a manually started server. Parent-site checks run only when an explicit `PARENT_QA_URL` is supplied. An unconfigured parent suite is recorded as skipped, not passed. See the [browser QA record](Browser_QA.md) for executed local coverage and limits.
 
+## Explicit public-artifact boundary
+
+`public-artifacts.json` is the reviewed source allowlist for the static website,
+linked documents and current toolkit ZIP. The builder and release gate check the
+exact file inventory; the gate also compares every toolkit member with its selected
+source hash. New files, operator configurations, handoffs and actual allocations
+are not picked up by directory recursion. Publication requires an intentional,
+reviewed allowlist edit. The full historical source ZIP is not part of the public artifact. Historical
+HTML/Markdown remain available, while allocation examples are excluded from the
+current public download.
+
+Private preparation belongs in the private company control plane and approved
+controlled storage, never in this public repository's tracked files or history.
+A path being excluded from `dist/` does not make a public Git commit private.
+The installer additionally rejects internal/handoff/private path components, and
+the public checker probes internal documents, handoffs, runs and implementation
+paths for true404 responses. When updating the shared edge, apply the reviewed
+Garden denylist additions without touching the corporate site's content or mail.
+
 ## Promote a release
 
 Transfer the reviewed archive, manifest, and reviewed installer to the existing host using the operator's established authenticated administration path. Do not add a new broadly privileged CI key just to automate promotion. Verify the full source revision and manifest hash again on the host, then run:
@@ -53,7 +72,7 @@ A process lock serializes installs. A relative symlink replacement atomically ch
 
 For the initial mount and virtual-host addition, snapshot the existing container configuration and Caddyfile privately. Add the mount through the existing corporate deployment method and append the Garden snippet while leaving all parent blocks unchanged. Validate the **complete candidate** with the host's exact Caddy binary/image before replacement. Caddy's admin API is disabled here, so `caddy reload` is not a supported assumption: use the established container recreation/restart mechanism with rollback available. The initial container operation may briefly affect the shared edge and must be followed by parent-site checks. Subsequent Garden releases normally need only the static symlink switch.
 
-The Garden snippet gives HTTP redirects, HTTPS responses, and custom 404 responses the same security headers. `/index.html` redirects to `/` while preserving its query. Scripts/styles load from the same origin; no inline execution is allowed. The two original historical HTML pages are served as attachments because they retain inline code; opening a downloaded copy locally preserves the original experience without weakening production CSP. Their bytes also remain in the original downloadable ZIP. There are no analytics cookies or request access-log directives. Existing Caddy operational/certificate logs remain under corporate retention policy.
+The Garden snippet gives HTTP redirects, HTTPS responses, and custom 404 responses the same security headers. `/index.html` redirects to `/` while preserving its query. Scripts/styles load from the same origin; no inline execution is allowed. The two original historical HTML pages are served as attachments because they retain inline code; opening a downloaded copy locally preserves the original experience without weakening production CSP. The full historical source ZIP is excluded from the current public artifact; the two reviewed HTML files remain separate downloads. There are no analytics cookies or request access-log directives. Existing Caddy operational/certificate logs remain under corporate retention policy.
 
 ## DNS, certificates, and launch verification
 

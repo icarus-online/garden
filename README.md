@@ -20,8 +20,8 @@ mechanical diagnostics with **zero model calls**. It cannot run live inference.
 
 ## Explore and reproduce
 
-Requires Node.js 22 or newer and Python 3.10 or newer. Clone with history: the
-build includes the original source snapshot from its preserved Git commit.
+Requires Node.js 22 or newer and Python 3.10 or newer. Historical originals remain preserved in `archive/`; the current public toolkit
+is assembled only from its reviewed source allowlist.
 
 ```sh
 git clone https://github.com/icarus-online/garden.git
@@ -91,6 +91,18 @@ sealed held-out tasks, corpus reuse terms, independent reviewers, and an explici
 budget. Confirmation additionally requires a powered sample and frozen public
 preregistration. See [the research roadmap](docs/Research_Roadmap.md) and
 [scientific review](docs/Scientific_Review.md).
+
+## Public and private boundary
+
+The [public-artifact allowlist](public-artifacts.json) names every source file
+permitted in the website and current toolkit download. New documents, configurations,
+handoffs, allocations and traces are excluded until deliberately reviewed; recursive
+directory collection is not publication approval. `npm run validate` checks both the
+public file inventory and the exact contents/hashes of the downloadable toolkit.
+Internal preparation belongs in the private company control plane, not this public
+repository or its Git history. The full historical source ZIP is no longer published by the website. Historical
+HTML/Markdown artifacts remain available, while allocation examples are excluded
+from the current public download.
 
 ## Deployment and custody
 

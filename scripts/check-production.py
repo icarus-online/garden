@@ -65,7 +65,11 @@ def check(host, expected_ip=None, expected_revision=None, min_cert_days=14):
         ('https','/index.html?garden_probe=canonical',308),
         ('http','/laboratory.html?garden_probe=https',308),
         ('https','/__garden_healthcheck_missing__',404),
-        ('https','/.env',404),('https','/.git/config',404),('https','/assets/',404)]:
+        ('https','/.env',404),('https','/.git/config',404),('https','/assets/',404),
+        ('https','/docs/internal/Studio_Readiness_Decision.md',404),
+        ('https','/docs/handoffs/2026-10-23-garden-launch.md',404),
+        ('https','/runs/manifest.json',404),('https','/research/core.py',404),
+        ('https','/downloads/garden-original-v0.3.zip',404)]:
         status, headers, body = request(f'{scheme}://{host}{path}')
         if status != expected:
             raise ValueError(f'{scheme} {path}: expected {expected}, received {status}')

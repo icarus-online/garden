@@ -54,9 +54,9 @@ class DeploymentTests(unittest.TestCase):
         with self.assertRaises(installer.InvalidRelease): installer.install(*self.artifact(revision='b'*40,alter_health=True))
         self.assertEqual((self.root/'current').readlink().as_posix(),first['current'])
     def test_traversal_links_duplicates_private_and_oversize_rejected(self):
-        for attack in ('traversal','absolute','symlink','hardlink','duplicate','private','source','oversize'):
+        for attack in ('traversal','absolute','symlink','hardlink','duplicate','private','source','internal','handoff','lowercase_private','oversize'):
             with self.subTest(attack=attack):
-                names={'traversal':'../escape.txt','absolute':'/escape.txt','symlink':'link.txt','hardlink':'hard.txt','duplicate':'index.html','private':'runs/private.json','source':'application.py','oversize':'large.txt'}
+                names={'traversal':'../escape.txt','absolute':'/escape.txt','symlink':'link.txt','hardlink':'hard.txt','duplicate':'index.html','private':'runs/private.json','source':'application.py','internal':'docs/internal/note.md','handoff':'docs/handoffs/note.md','lowercase_private':'methods/private-allocation.json','oversize':'large.txt'}
                 info=tarfile.TarInfo(names[attack]);payload=b'x'
                 if attack in ('symlink','hardlink'):
                     info.type=tarfile.SYMTYPE if attack=='symlink' else tarfile.LNKTYPE

@@ -24,7 +24,7 @@ garden.icarus.onl {
 	root * /srv/garden/current
 	encode zstd gzip
 
-	@private path /.git* /.env* /runs/* /deploy/* /scripts/* /tests/* /node_modules/* /research/core.py /research/__main__.py /package.json /package-lock.json
+	@private path /.git* /.env* /runs /runs/* /docs/internal /docs/internal/* /docs/handoffs /docs/handoffs/* /private /private/* /downloads/garden-original-v0.3.zip /deploy/* /scripts/* /tests/* /node_modules/* /research/core.py /research/__main__.py /package.json /package-lock.json
 	error @private 404
 
 	@index_query expression `{http.request.uri.path} == '/index.html' && {http.request.uri.query} != ''`

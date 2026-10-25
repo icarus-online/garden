@@ -9,29 +9,29 @@ import subprocess
 import tarfile
 import zipfile
 
+try:
+    from .public_artifacts import public_files, validate_output
+except ImportError:
+    from public_artifacts import public_files, validate_output
+
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def toolkit():
-    files = [ROOT / 'README.md', ROOT / 'AGENTS.md']
-    for directory in ['research', 'materials', 'methods', 'docs', 'tests']:
-        files += [p for p in (ROOT / directory).rglob('*')
-                  if p.is_file() and p.suffix in {'.py', '.json', '.md', '.csv'}
-                  and '__pycache__' not in p.parts]
-    files += [ROOT / 'scripts' / name for name in ['make_allocations.py', 'freeze_corpora.py']]
-    destination = ROOT / 'dist/downloads/garden-toolkit.zip'
+def toolkit(root=ROOT):
+    root = Path(root)
+    files = public_files(root, 'toolkit_files')
+    destination = root / 'dist/downloads/garden-toolkit.zip'
     destination.parent.mkdir(parents=True, exist_ok=True)
     with zipfile.ZipFile(destination, 'w', zipfile.ZIP_DEFLATED) as z:
         for p in sorted(set(files)):
-            if not p.exists():
-                continue
-            info = zipfile.ZipInfo(p.relative_to(ROOT).as_posix(), (2026, 10, 19, 0, 0, 0))
+            info = zipfile.ZipInfo(p.relative_to(root).as_posix(), (2026, 10, 19, 0, 0, 0))
             info.external_attr = 0o644 << 16
             info.compress_type = zipfile.ZIP_DEFLATED
             z.writestr(info, p.read_bytes())
 
 
 def release():
+    validate_output(ROOT)
     dirty = subprocess.check_output(['git', 'status', '--porcelain'], cwd=ROOT, text=True)
     if dirty:
         raise SystemExit('Release packaging requires a clean committed checkout.')
