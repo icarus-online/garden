@@ -18,7 +18,7 @@ MAX_CONTENT = 128 * 1024 * 1024
 MAX_FILE = 16 * 1024 * 1024
 MAX_ENTRIES = 5000
 PUBLIC_SUFFIXES = {'.html','.css','.js','.json','.txt','.xml','.svg','.png','.jpg','.jpeg','.webp','.ico','.woff','.woff2','.ttf','.md','.zip','.pdf'}
-FORBIDDEN_COMPONENTS = {'runs','node_modules','deploy','scripts','tests','__pycache__'}
+FORBIDDEN_COMPONENTS = {'runs','node_modules','deploy','scripts','tests','__pycache__','internal','handoffs','private'}
 
 class InvalidRelease(ValueError):
     pass
@@ -40,7 +40,7 @@ def safe_name(name):
     path = PurePosixPath(name)
     if (not name or '\\' in name or '\x00' in name or path.is_absolute()
         or any(part in ('','.','..') for part in name.rstrip('/').split('/'))
-        or any(part.startswith('.') or part in FORBIDDEN_COMPONENTS or 'PRIVATE' in part for part in path.parts)):
+        or any(part.startswith('.') or part.lower() in FORBIDDEN_COMPONENTS or 'private' in part.lower() for part in path.parts)):
         raise InvalidRelease(f'Unsafe or private archive path: {name!r}')
     return path.as_posix()
 
